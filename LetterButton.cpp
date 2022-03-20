@@ -21,6 +21,7 @@ public:
     LetterButton();
     void draw(sf::RenderWindow &window);
     bool isClicked();
+    bool is_correct();
     bool isCursorInsideBox();
     void writeLetter(sf::Text letter);
     void ChangeColor(sf::Text letter, sf::Text appropriateLetter, bool isChecked);

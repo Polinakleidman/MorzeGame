@@ -38,6 +38,7 @@ public:
 
 //интерфейс играемого уровня
 class GameProcess{
+public:
     sf::RenderWindow& createLevelWindow();
     Label CreatePhrase(std::string phrase);
     std::vector<LetterButton> CreatePhraseWithButtons(Label phrase, int hardness);
@@ -47,6 +48,7 @@ class GameProcess{
 
 //интерфейс проверенного уровня
 class GameChecked{
+public:
     sf::RenderWindow& createCheckedLevelWindow();
     Label CreateColoredPhrase(std::string phrase, std::vector<bool> correctLetters);
     AgainButton CreateAgainButton();

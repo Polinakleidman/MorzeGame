@@ -51,6 +51,15 @@ protected:
 class ToLevelButton: public TransportButton{
 protected:
     sf::ShapeToLevel object;
+    int Complexity{};
+    int numberOfLevel{};
+public:
+    int getComlexity(){
+        return Complexity;
+    }
+    int getNumberOfLevel(){
+        return numberOfLevel;
+    }
 };
 class CheckButton: public TransportButton{
 protected:
