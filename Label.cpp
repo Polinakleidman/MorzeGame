@@ -11,3 +11,4 @@ public:
     void draw(sf::RenderWindow &window);
     void setText(const std::string str);
 };
+

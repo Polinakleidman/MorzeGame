@@ -23,7 +23,7 @@ public:
     bool isClicked();
     bool isCursorInsideBox();
     void writeLetter(sf::Text letter);
-    void ChangeColor(sf::Text letter, sf::Text appropriateLetter, isChecked);
+    void ChangeColor(sf::Text letter, sf::Text appropriateLetter, bool isChecked);
     void setTexture(sf ::Texture texture);
     void setSize(sf ::Vector2f size);
     void setPosition(sf ::Vector2f position);

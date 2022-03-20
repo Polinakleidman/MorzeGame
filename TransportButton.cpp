@@ -16,7 +16,7 @@
 
 class TransportButton{
 protected:
-    sf::Shape object;//встроенный класс SFML в нем хранится все об этой фигуре(цвет, расположение, размер)
+    //sf::Shape object(расширение на прямоугольник и круг ниже) встроенный класс SFML в нем хранится все об этой фигуре(цвет, расположение, размер)
     sf ::Text text;//текст на кнопке
     sf::Vector2f localTextPosition = {0, 0};//расположение текста на кнопке
     bool isInsideObject = true;//курсор внутри кнопки

@@ -1,63 +1,55 @@
 #include "TransportButton.cpp"
-#include "Lable.cpp"
+#include "LetterButton.cpp"
+#include "Label.cpp"
 
 
 //это интерфейс меню
 class Menu{
 public:
-    sf::RenderWindow createMenuWindow();
+    sf::RenderWindow& createMenuWindow();
     void addGreeting();
     WatchMorzeButton CreateMorzeButton();
     ToLevelListButton CreateToLevelListButton();
 };
 
 
-//это пример как будет реализова переход между окнами
-//int main(){
-//    Menu menu;
-//    Aplhabet alphabet;
-//    sf::renderwindow alphaberadress = alphabet.createAlphabetWindow;
-//    sf::renderwindow menuadress = menu.createmunewind;
-//    watchmorezebut but1 = menu.createmorzebut();
-//    if (but1.isclicked()){
-//        transport;
-//    }
-//}
-
-
-
 //интерфейс азбуки
 class Alphabet{
 public:
-    sf::RenderWindow createAlphabetWindow();
+    sf::RenderWindow& createAlphabetWindow();
     void addPicture();
-    void CreateBackToMenuButton();
+    BackToMenuButton CreateBackToMenuButton();
 };
+
+sf::RenderWindow& Alphabet::createAlphabetWindow() {
+    sf::RenderWindow window(sf::VideoMode(640, 480), "SFML Application");//для примера, с размерами мы еще не определились7
+    return window;
+}
 
 
 //интефейс выбора уровня
 class AllLevels{
 public:
-    sf::RenderWindow createAllLevelsWindow();
-    void CreatelevelsButtons();
-    void CreateOneLevelButton();
-    void CreateBackToMenuButton();
+    sf::RenderWindow& createAllLevelsWindow();
+    std::vector<ToLevelButton> CreatelevelsButtons();
+    ToLevelButton CreateOneLevelButton();
+    BackToMenuButton CreateBackToMenuButton();
 };
 
 //интерфейс играемого уровня
 class GameProcess{
-    sf::RenderWindow createLevelWindow();
-    void CreatePhrase(Label phrase);
-    void CreatePhraseWithButtons(Label phrase, int hardness);
-    void CreateCheckButton();
-    void CreateToLevelListButton();
+    sf::RenderWindow& createLevelWindow();
+    Label CreatePhrase(std::string phrase);
+    std::vector<LetterButton> CreatePhraseWithButtons(Label phrase, int hardness);
+    CheckButton CreateCheckButton();
+    ToLevelListButton CreateToLevelListButton();
 };
 
 //интерфейс проверенного уровня
 class GameChecked{
-    sf::RenderWindow createCheckedLevelWindow();
-    void CreateColoredPhrase(Label phrase, std::vector<bool> correctLetters);
-    void CreateAgainButton();
-    void CreateNextButton();
-    coid CreateToLevelListButton();
+    sf::RenderWindow& createCheckedLevelWindow();
+    Label CreateColoredPhrase(std::string phrase, std::vector<bool> correctLetters);
+    AgainButton CreateAgainButton();
+    NextLevelButton CreateNextButton();
+    ToLevelListButton CreateToLevelListButton();
 };
