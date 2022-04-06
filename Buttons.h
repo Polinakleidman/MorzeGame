@@ -2,24 +2,37 @@
 #include <string>
 #include <vector>
 
+enum PositionState {
+    left,
+    middle,
+    right,
+    down,
+    top
+};
+
 class Button{
     sf::RectangleShape rectangle;
-    sf::Texture texture;
+    sf::Texture buttonTexture;
+    sf::RectangleShape rectChoose;
+    sf::Text startText;
     sf::Text text;
-    sf::Vector2f localTextPosition;
-    bool isCursorInside = false;
-    sf::RenderWindow* window;
+    sf::Vector2f localTextPosition = {0, 0};
+    bool isLeftButtonPressed = false;
+    bool isInsideRect = true;
+    sf::RenderWindow* window = 0;
+    float maxLengthText = FLT_MAX;
+    void setTextHeight();
 
 public:
     Button();
     void setTexture(sf ::Texture texture);
-    void setWindow(sf::RenderWindow &window);
     void draw(sf::RenderWindow& window);
     bool isPressed();
-    bool isCursorInsideBox();
+    void isCursorInsideBox();
     void setSize(sf ::Vector2f size);
     void setPosition(sf ::Vector2f position);
     void setText(sf::Text text);
+    void setTextPosition(PositionState posX, PositionState posY);
     void setTextLength(float length);
     sf::Vector2f getScale();
     sf::Vector2f getSize();
