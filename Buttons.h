@@ -39,6 +39,10 @@ public:
     void setTextPosition(PositionState posX, PositionState posY);
     void setTextLength(float length);
     void setFillColor(sf::Color);
+    void set_all(std::string Text, int text_size, sf::Color TextColor,
+                 std::string texture_file, PositionState textPosX, PositionState textPosY,
+                 sf::Color FillColor, float positionX, float positionY,
+                 float sizeX, float sizeY);
     sf::Vector2f getScale();
     sf::Vector2f getSize();
     sf::Vector2f getPosition();
