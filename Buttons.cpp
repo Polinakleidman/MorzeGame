@@ -46,7 +46,8 @@ sf::Vector2f Button::getScale(){
 
 Button::Button() {
     rectangle.setSize({200, 100});
-    font.loadFromFile("../arial.ttf");
+    setlocale(LC_ALL, "russian");
+    font.loadFromFile("../arialbd.ttf");
 }
 
 void Button::setTextHeight() {
@@ -304,11 +305,14 @@ int ToLevelButton::getComlexity() const{
 int ToLevelButton::getNumberOfLevel() const{
     return numberOfLevel;
 }
-void Button::set_all(std::string Text, int text_size, sf::Color TextColor,
+void Button::set_all(std::wstring Text, int text_size, sf::Color TextColor,
              std::string texture_file, PositionState textPosX, PositionState textPosY,
              sf::Color FillColor, float positionX, float positionY,
              float sizeX, float sizeY){
 
+    setlocale(LC_ALL, "russian");
+    sf::Vector2<float> size(sizeX, sizeY);
+    setSize(size);
     sf::Text ButtonText(Text, font, text_size);
     ButtonText.setFillColor(TextColor);
     setText(ButtonText);
@@ -324,8 +328,6 @@ void Button::set_all(std::string Text, int text_size, sf::Color TextColor,
     sf::Vector2<float> position(positionX, positionY);
     setPosition(position);
 
-    sf::Vector2<float> size(sizeX, sizeY);
-    setSize(size);
 
     setTextPosition(textPosX, textPosY);
 }

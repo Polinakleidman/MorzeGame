@@ -16,6 +16,7 @@ public:
     Button WatchMorzeButton;
     Button ToLevelListButton;
     sf::RenderWindow window;
+    Label Label0;
 public:
     Menu();
     void render(sf::Window& Window);

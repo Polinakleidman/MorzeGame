@@ -180,16 +180,18 @@ int main(){
             if (menu.WatchMorzeButton.isPressed()) {
                 MenuWindow.close();
                 //work_with_Morze_window();
-            } /*else if (menu.ToLevelListButton.isPressed()) {
+            } else if (menu.ToLevelListButton.isPressed()) {
                 MenuWindow.close();
                 //work_with_Level_List();
-            }*/
+            }
         }
 
-        MenuWindow.clear(sf::Color::Black);
+        MenuWindow.clear(sf::Color::White);
 
         if(!flag){
             menu.WatchMorzeButton.draw(MenuWindow);
+            menu.ToLevelListButton.draw(MenuWindow);
+            menu.Label0.draw(MenuWindow);
         }
         MenuWindow.display();
     }

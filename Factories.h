@@ -1,5 +1,6 @@
 #pragma once
 #include "Buttons.h"
+#include "Label.h"
 class Factory{
     //таких кнопок на странице не больше одной, так что координаты не нужны
     //все будет сразу прописано в дочерней фабрике
@@ -20,6 +21,7 @@ class MenuFactory: public Factory{
 public:
     void CreateMorzeButton(Button&);
     void CreateToLevelListButton(Button&);
+    void CreateLabel(Label&);
 };
 
 class MorzeFactory: public Factory{
