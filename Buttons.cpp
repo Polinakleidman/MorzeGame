@@ -46,6 +46,7 @@ sf::Vector2f Button::getScale(){
 
 Button::Button() {
     rectangle.setSize({200, 100});
+    font.loadFromFile("../arial.ttf");
 }
 
 void Button::setTextHeight() {
@@ -119,6 +120,10 @@ void Button::setTexture(sf::Texture texture) {
     rectangle.setTexture(&buttonTexture);
 }
 
+void Button::setFillColor(sf::Color color) {
+    rectangle.setFillColor(color);
+}
+
 void Button::setSize(sf::Vector2f size) {
     rectangle.setSize(size);
 
@@ -139,10 +144,10 @@ void Button::setPosition(sf::Vector2f position) {
 }
 
 
-void Button::setText(sf::Text text) {
-    startText = text;
+void Button::setText(sf::Text cur_text) {
+    startText = cur_text;
 
-    this->text = text;
+    this->text = cur_text;
 
     setTextHeight();
     setTextLength(maxLengthText);
@@ -298,3 +303,29 @@ int ToLevelButton::getComlexity() const{
 int ToLevelButton::getNumberOfLevel() const{
     return numberOfLevel;
 }
+void Button::set_all(std::string Text, int text_size, sf::Color TextColor,
+             std::string texture_file, PositionState textPosX, PositionState textPosY,
+             sf::Color FillColor, float positionX, float positionY,
+             float sizeX, float sizeY){
+
+    sf::Text ButtonText(Text, font, text_size);
+    ButtonText.setFillColor(TextColor);
+    setText(ButtonText);
+
+    sf::Texture Texture;
+    Texture.loadFromFile(texture_file);
+    setTexture(Texture);
+
+
+    setTextPosition(textPosX, textPosY);
+    setFillColor(FillColor);
+
+    sf::Vector2<float> position(positionX, positionY);
+    setPosition(position);
+
+    sf::Vector2<float> size(sizeX, sizeY);
+    setSize(size);
+
+    setTextPosition(textPosX, textPosY);
+}
+
