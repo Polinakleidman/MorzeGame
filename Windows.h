@@ -1,3 +1,4 @@
+#pragma once
 #include "Buttons.h"
 #include "Factories.h"
 #include <vector>
@@ -5,18 +6,19 @@
 
 class Renderable{
 private:
-    sf::RenderWindow& render();
+    void render(sf::Window& window);
 };
 
 class Menu: public Renderable{
-private:
-    Factory factory;
+public:
+    MenuFactory factory;
 public:
     Button WatchMorzeButton;
     Button ToLevelListButton;
     sf::RenderWindow window;
 public:
-    sf::RenderWindow& render();
+    Menu();
+    void render(sf::Window& Window);
 };
 
 class Alphabet: public Renderable{
@@ -25,7 +27,7 @@ private:
 public:
     Button MenuButton;
 public:
-    sf::RenderWindow& render();
+    void render(sf::Window& window);
 };
 
 class AllLevels: public Renderable{
@@ -35,7 +37,7 @@ public:
     std::vector<Button> LevelButtons;
     Button MenuButton;
 public:
-    sf::RenderWindow& render();
+    void render(sf::Window& window);
 };
 
 class GameProcess: public Renderable{
@@ -46,7 +48,7 @@ public:
     Button ToLevelListButton;
     std::vector<Button> Phrase;
 public:
-    sf::RenderWindow& render();
+    void render(sf::Window& window);
 };
 
 
@@ -60,5 +62,5 @@ public:
     Button NextButton;
     Button ToLevelListButton;
 public:
-    sf::RenderWindow& render();
+    void render(sf::Window& window);
 };

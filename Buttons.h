@@ -1,6 +1,8 @@
+#pragma once
 #include "SFML/Graphics.hpp"
 #include <string>
 #include <vector>
+#include <cfloat>
 
 enum PositionState {
     left,
@@ -26,6 +28,7 @@ protected:
 
 public:
     Button();
+    sf::Font font;
     void setTexture(sf ::Texture texture);
     void draw(sf::RenderWindow& window);
     bool isPressed();
@@ -35,6 +38,7 @@ public:
     void setText(sf::Text text);
     void setTextPosition(PositionState posX, PositionState posY);
     void setTextLength(float length);
+    void setFillColor(sf::Color);
     sf::Vector2f getScale();
     sf::Vector2f getSize();
     sf::Vector2f getPosition();

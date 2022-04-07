@@ -1,14 +1,21 @@
-#include "SFML/Graphics.hpp"
-#include <string>
+#include "Label.h"
 
-class Label {
-private:
-    sf::Text text;
+Label::Label(const std::string str)
+{
+    font.loadFromFile("../arial.ttf");
+    text.setString(str);
+    text.setFillColor({255, 0, 0, 50});
+    text.setCharacterSize(50);
+}
 
-public:
-    Label(const std::string str = "");
 
-    void draw(sf::RenderWindow &window);
-    void setText(const std::string str);
-};
+void Label::draw(sf::RenderWindow &window)
+{
+    window.draw(text);
+}
 
+
+void Label::setString(const std::string str)
+{
+    text.setString(str);
+}

@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
-#include "Interfaces.cpp"
-#include "TransportButton.cpp"
-#include "LetterButton.cpp"
-#include "Label.cpp"
+#include "Windows.h"
+//#include "Buttons.h"
+#include "Factories.h"
+//#include "Label.h"
 #include "SFML/Graphics.hpp"
 
+/*
 int work_with_checked_level(const std::vector<bool>& checked_letters, const std::string& phrase0){
     GameChecked level;
     sf::RenderWindow& levelWindow = level.createCheckedLevelWindow();
@@ -153,36 +154,50 @@ void work_with_Morze_window(){
     }
 
 }
+*/
 
-void work_with_menu_window(){
+int main(){
+    setlocale(LC_ALL, "russian");
     Menu menu;
-    Alphabet alphabet;
-    sf::RenderWindow& menuWindow = menu.createMenuWindow();
-    WatchMorzeButton but1 = menu.CreateMorzeButton();
-    ToLevelListButton but2 = menu.CreateToLevelListButton();
-    while (menuWindow.isOpen())
+    //Alphabet alphabet;
+    sf::RenderWindow MenuWindow;
+    menu.render(MenuWindow);
+    std::cout<<"ok1";
+    std::cout<<"ok2";
+    std::cout<<"ok";
+
+    bool flag = false;
+
+    while (MenuWindow.isOpen())
     {
         sf::Event event;
 
-        while (menuWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                menuWindow.close();
+        while (MenuWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                MenuWindow.close();
+            }
+
+            if (menu.WatchMorzeButton.isPressed()) {
+                MenuWindow.close();
+                //work_with_Morze_window();
+            } /*else if (menu.ToLevelListButton.isPressed()) {
+                MenuWindow.close();
+                //work_with_Level_List();
+            }*/
         }
 
-        if (but1.isClicked()){
-            menuWindow.close();
-            work_with_Morze_window();
-        }else if (but2.isClicked()){
-            menuWindow.close();
-            work_with_Level_List();
+        MenuWindow.clear(sf::Color::Black);
+
+        if(!flag){
+            menu.WatchMorzeButton.draw(MenuWindow);
         }
-        menuWindow.display();
+        MenuWindow.display();
     }
 }
 
 
 
+/*
 int main(){
     work_with_menu_window();
-}
+}*/

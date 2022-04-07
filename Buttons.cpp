@@ -2,7 +2,7 @@
 #include "SFML/Graphics.hpp"
 #include <stdio.h>
 #include <string.h>
-#include <windows.h>
+//#include <windows.h>
 #include <float.h>
 #include <vector>
 #include "Buttons.h"
@@ -46,6 +46,7 @@ sf::Vector2f Button::getScale(){
 
 Button::Button() {
     rectangle.setSize({200, 100});
+    font.loadFromFile("../arial.ttf");
 }
 
 void Button::setTextHeight() {
@@ -117,6 +118,10 @@ void Button::setTexture(sf::Texture texture) {
     buttonTexture = texture;
 
     rectangle.setTexture(&buttonTexture);
+}
+
+void Button::setFillColor(sf::Color color){
+    rectangle.setFillColor(color);
 }
 
 void Button::setSize(sf::Vector2f size) {
