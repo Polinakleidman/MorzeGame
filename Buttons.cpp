@@ -6,6 +6,7 @@
 #include <float.h>
 #include <vector>
 #include "Buttons.h"
+#include <iostream>
 
 
 sf::Vector2f GetCursorPosition(sf::RenderWindow &window);
@@ -250,3 +251,50 @@ sf::Vector2f Button::getSize() {
     return rectangle.getSize();
 }
 
+LetterButton::LetterButton(char c){
+    rectangle.setSize({100, 100});
+    appropriateLetter = c;
+    isEmpty = false;
+}
+bool LetterButton::is_correct() const {
+    if (letter == appropriateLetter){
+        return true;
+    }
+    return false;
+}
+
+void LetterButton::writeLetter(sf::Font& font) {
+    char s;
+    std::cin>>s;
+    letter = s;
+    sf::Text text0(s, font, 25);
+    setText(text0);
+    setTextPosition(middle, middle);
+}
+
+void LetterButton::ChangeColor(){
+    if (is_correct()){
+        rectangle.setFillColor({0, 255, 0, 200});
+    }
+    else{
+        rectangle.setFillColor({255, 0, 0, 200});
+    }
+    setTextPosition(middle, middle);
+}
+
+TransportButton::TransportButton() {
+    rectangle.setSize({100, 100});
+}
+
+ToLevelButton::ToLevelButton(int c, int n){
+    rectangle.setSize({100, 100});
+    Complexity = c;
+    numberOfLevel = n;
+};
+
+int ToLevelButton::getComlexity() const{
+    return Complexity;
+}
+int ToLevelButton::getNumberOfLevel() const{
+    return numberOfLevel;
+}

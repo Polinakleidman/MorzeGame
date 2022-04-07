@@ -11,6 +11,7 @@ enum PositionState {
 };
 
 class Button{
+protected:
     sf::RectangleShape rectangle;
     sf::Texture buttonTexture;
     sf::RectangleShape rectChoose;
@@ -52,24 +53,21 @@ protected:
     int Complexity;
     int numberOfLevel;
 public:
-    ToLevelButton();
-    int getComlexity(){
-        return Complexity;
-    }
-    int getNumberOfLevel(){
-        return numberOfLevel;
-    }
+    ToLevelButton(int c, int n);
+    int getComlexity() const;
+    int getNumberOfLevel() const;
 };
 
 class LetterButton: public Button{
 protected:
-    sf::Text letter;
-    sf::Text appropriateLetter;
-    bool isEmpty;
+    char letter = ' ';
+    char appropriateLetter;
+    bool isEmpty = true;
 public:
-    LetterButton();
-    bool is_correct();
-    void writeLetter(sf::Text letter);
+    explicit LetterButton(char c);
+    bool is_correct() const;
+    void writeLetter(sf::Font& font);
+    void ChangeColor();
 };
 
 
