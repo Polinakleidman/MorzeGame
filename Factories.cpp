@@ -3,15 +3,22 @@
 
 
  void MenuFactory::CreateLabel(Label& label) {
-    label.setAll("Morze Game", 50, {139, 26, 26, 230},
-                 "../button.png", {0, 245, 255, 120}, 300, 300,
-                 250, 150);
+    label.setAll("Morze Game", 100, sf::Color{0x240803ff},
+                  300, 150,
+                 800, 200);
+
+}
+
+void MenuFactory::CreateLabelMorze(Label &label) {
+    label.setAll("-- --- .-. --.. .   --. .- -. .", 100, sf::Color{0x170603ff},
+                 130, 300,
+                 800, 200);
 }
 
  void MenuFactory::CreateMorzeButton(Button& MorzeButton) {
 
-   MorzeButton.set_all(L"Открыть\nазбуку\nМорзе", 35, {139, 26, 26, 230},
-                        "../button.png", middle, middle, {0, 245, 255, 120}, 120, 550,
+   MorzeButton.set_all(L"Открыть\nазбуку\nМорзе", 35, sf::Color::Yellow,
+                        "../button.png", middle, middle, sf::Color::Magenta, 120, 550,
                         250, 150);
 
 //     sf::Vector2<float> size(200, 200);
@@ -37,7 +44,7 @@
 void MenuFactory::CreateToLevelListButton(Button& LevelListButton){
 
     LevelListButton.set_all(L"Выбор\nУровней", 35, {0, 0, 139, 230},
-                        "../button.png", middle, middle, {161, 83, 143, }, 800, 550,
+                        "../button.png", middle, middle, sf::Color::Yellow, 800, 550,
                         250, 150);
 }
 

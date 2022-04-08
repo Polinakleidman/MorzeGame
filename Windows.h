@@ -17,6 +17,7 @@ public:
     Button ToLevelListButton;
     sf::RenderWindow window;
     Label Label0;
+    Label LabelMorze;
 public:
     Menu();
     void render(sf::Window& Window);

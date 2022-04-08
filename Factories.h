@@ -22,6 +22,7 @@ public:
     void CreateMorzeButton(Button&);
     void CreateToLevelListButton(Button&);
     void CreateLabel(Label&);
+    void CreateLabelMorze(Label&);
 };
 
 class MorzeFactory: public Factory{

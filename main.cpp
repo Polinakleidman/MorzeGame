@@ -192,6 +192,7 @@ int main(){
             menu.WatchMorzeButton.draw(MenuWindow);
             menu.ToLevelListButton.draw(MenuWindow);
             menu.Label0.draw(MenuWindow);
+            menu.LabelMorze.draw(MenuWindow);
         }
         MenuWindow.display();
     }
