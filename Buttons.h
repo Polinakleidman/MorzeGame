@@ -61,9 +61,11 @@ protected:
     int Complexity;
     int numberOfLevel;
 public:
-    ToLevelButton(int c, int n);
+    ToLevelButton();
     int getComlexity() const;
     int getNumberOfLevel() const;
+    void setComplexity(int);
+    void setNumberOfLevel(int);
 };
 
 class LetterButton: public Button{

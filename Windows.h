@@ -34,12 +34,13 @@ public:
 
 class AllLevels: public Renderable{
 private:
-    Factory factory;
+    LevelListFactory factory;
 public:
-    std::vector<Button> LevelButtons;
+    std::vector<ToLevelButton> LevelButtons;
     Button MenuButton;
 public:
     void render(sf::Window& window);
+    AllLevels();
 };
 
 class GameProcess: public Renderable{

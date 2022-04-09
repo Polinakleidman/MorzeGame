@@ -6,6 +6,8 @@
 //#include "Label.h"
 #include "SFML/Graphics.hpp"
 
+
+void work_with_menu_window();
 /*
 int work_with_checked_level(const std::vector<bool>& checked_letters, const std::string& phrase0){
     GameChecked level;
@@ -95,43 +97,51 @@ bool work_with_level(int complexity, int number){
         levelWindow.display();
     }
 }
-
+*/
 void work_with_Level_List(){
-    AllLevels levels;
-    sf::RenderWindow& levelsWindow = levels.createAllLevelsWindow();
-    BackToMenuButton back = levels.CreateBackToMenuButton();
-    std::vector<ToLevelButton> levelbuttons =levels.CreatelevelsButtons();
-    while (levelsWindow.isOpen())
+    AllLevels allLevels;
+    //Alphabet alphabet;
+    sf::RenderWindow allLevelsWindow;
+    allLevels.render(allLevelsWindow);
+    bool flag = false;
+
+    while (allLevelsWindow.isOpen())
     {
         sf::Event event;
 
-        while (levelsWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                levelsWindow.close();
-        }
+        while (allLevelsWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                allLevelsWindow.close();
+            }
 
-        if (back.isClicked()){
-            levelsWindow.close();
-        }
+            if (allLevels.MenuButton.isPressed()) {
+                allLevelsWindow.close();
+                work_with_menu_window();
+            }
 
-        for (int i=0;i<levelbuttons.size();++i){
-            if (levelbuttons[i].isClicked()){
-                bool nextLevel = work_with_level(levelbuttons[i].getComlexity(), levelbuttons[i].getNumberOfLevel());
-                int pos = i;
-                while (nextLevel && pos<levelbuttons.size() - 1){
-                    ++pos;
-                    nextLevel = work_with_level(levelbuttons[pos].getNumberOfLevel(), levelbuttons[pos].getNumberOfLevel());
+
+            for (auto a:allLevels.LevelButtons){
+                if (a.isPressed()){
+                    allLevelsWindow.close();
+                    //work_with_level(a.getNumberOfLevel(), a.getComlexity());
+                    std::cout<<a.getNumberOfLevel()<<" "<<a.getComlexity();
                 }
             }
-        }
 
-        levelsWindow.display();
-        //alphabetWindow.draw(picture); это должно быть изи
+            allLevelsWindow.clear(sf::Color::White);
+
+            if(!flag){
+                allLevels.MenuButton.draw(allLevelsWindow);
+                for (auto& a: allLevels.LevelButtons){
+                    a.draw(allLevelsWindow);
+                }
+            }
+            allLevelsWindow.display();
+        }
     }
 }
 
-
+/*
 void work_with_Morze_window(){
     Alphabet alphabet;
     sf::RenderWindow& alphabetWindow = alphabet.createAlphabetWindow();
@@ -156,7 +166,7 @@ void work_with_Morze_window(){
 }
 */
 
-int main(){
+void work_with_menu_window(){
     setlocale(LC_ALL, "russian");
     Menu menu;
     //Alphabet alphabet;
@@ -182,7 +192,7 @@ int main(){
                 //work_with_Morze_window();
             } else if (menu.ToLevelListButton.isPressed()) {
                 MenuWindow.close();
-                //work_with_Level_List();
+                work_with_Level_List();
             }
         }
 
@@ -200,7 +210,7 @@ int main(){
 
 
 
-/*
+
 int main(){
-    work_with_menu_window();
-}*/
+    work_with_Level_List();
+}

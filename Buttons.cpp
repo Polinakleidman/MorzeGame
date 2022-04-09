@@ -293,11 +293,19 @@ TransportButton::TransportButton() {
     rectangle.setSize({100, 100});
 }
 
-ToLevelButton::ToLevelButton(int c, int n){
+ToLevelButton::ToLevelButton(){
     rectangle.setSize({100, 100});
-    Complexity = c;
-    numberOfLevel = n;
+    Complexity = 0;
+    numberOfLevel = 0;
 };
+
+void ToLevelButton::setComplexity(int c) {
+    Complexity = c;
+}
+
+void ToLevelButton::setNumberOfLevel(int n) {
+    numberOfLevel = n;
+}
 
 int ToLevelButton::getComlexity() const{
     return Complexity;
