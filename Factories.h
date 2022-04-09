@@ -30,8 +30,9 @@ class MorzeFactory: public Factory{
 };
 
 class LevelListFactory: public Factory{
-    Button CreateMenuButton();
-    Button CreateToLevelButton(int x, int y);
+public:
+    void CreateMenuButton(Button&);
+    void CreateToLevelButtons(ToLevelButton&, int i);
 };
 
 class GameProcessFactory: public Factory{
