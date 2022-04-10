@@ -7,6 +7,7 @@
 
 
 void work_with_menu_window();
+void work_with_level_window(int, int);
 /*
 int work_with_checked_level(const std::vector<bool>& checked_letters, const std::string& phrase0){
     GameChecked level;
@@ -122,7 +123,7 @@ void work_with_Level_List(){
             for (auto a:allLevels.LevelButtons){
                 if (a.isPressed()){
                     allLevelsWindow.close();
-                    //work_with_level(a.getNumberOfLevel(), a.getComlexity());
+                    work_with_level_window(a.getNumberOfLevel()+1, a.getComlexity()+1);
                     std::cout<<a.getNumberOfLevel()<<" "<<a.getComlexity();
                 }
             }
@@ -165,6 +166,38 @@ void work_with_Morze_window(){
 }
 */
 
+void work_with_Morze_window(){
+    setlocale(LC_ALL, "russian");
+    Alphabet alphabet;
+    sf::RenderWindow AlphabetWindow;
+    alphabet.render(AlphabetWindow);
+    bool flag = false;
+
+    while (AlphabetWindow.isOpen())
+    {
+        sf::Event event;
+
+        while (AlphabetWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                AlphabetWindow.close();
+            }
+
+            if (alphabet.MenuButton.isPressed()) {
+                AlphabetWindow.close();
+                work_with_menu_window();
+            }
+
+            AlphabetWindow.clear(sf::Color::White);
+
+            if(!flag){
+                alphabet.MenuButton.draw(AlphabetWindow);
+                alphabet.AlphabetButton.draw(AlphabetWindow);
+            }
+            AlphabetWindow.display();
+        }
+    }
+}
+
 void work_with_menu_window(){
     setlocale(LC_ALL, "russian");
     Menu menu;
@@ -187,7 +220,7 @@ void work_with_menu_window(){
 
             if (menu.WatchMorzeButton.isPressed()) {
                 MenuWindow.close();
-                //work_with_Morze_window();
+                work_with_Morze_window();
             } else if (menu.ToLevelListButton.isPressed()) {
                 MenuWindow.close();
                 work_with_Level_List();
@@ -215,7 +248,7 @@ void work_with_level_window(int level, int complexity){
     std::cout<<"ok1";
     std::cout<<"ok2";
     std::cout<<"ok";
-
+    std::wstring Text = L"a";
     bool flag = false;
 
     while (GPWindow.isOpen())
@@ -229,10 +262,23 @@ void work_with_level_window(int level, int complexity){
 
             if (gameprocess.ToLevelListButton.isPressed()) {
                 GPWindow.close();
-                //work_with_Morze_window();
+                work_with_Level_List();
             } else if (gameprocess.CheckButton.isPressed()) {
                 GPWindow.close();
+                for(auto x: gameprocess.enterPhrase){
+                    std::cout<<x.is_correct()<<"*";
+                }
                 //work_with_Level_List();
+            }else{
+                for(auto& but: gameprocess.enterPhrase){
+                    if (but.isPressed() && but.colorChange){
+                        //GPWindow.close();
+//                        but.writeLetter();
+                    but.set_all(Text, 35, {0, 0, 139, 230},
+            "../button.png", middle, middle, sf::Color::Yellow, 120, 100,
+            80, 80);
+                    }
+                }
             }
         }
 
@@ -242,10 +288,10 @@ void work_with_level_window(int level, int complexity){
             gameprocess.CheckButton.draw(GPWindow);
             gameprocess.ToLevelListButton.draw(GPWindow);
             gameprocess.Label0.draw(GPWindow);
-            for(auto but: gameprocess.givenPhrase){
+            for(auto& but: gameprocess.givenPhrase){
                 but.draw(GPWindow);
             }
-            for(auto but: gameprocess.enterPhrase){
+            for(auto& but: gameprocess.enterPhrase){
                 but.draw(GPWindow);
             }
         }
@@ -256,5 +302,5 @@ void work_with_level_window(int level, int complexity){
 
 
 int main(){
-    work_with_level_window(1, 1);
+    work_with_menu_window();
 }

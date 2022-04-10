@@ -13,7 +13,7 @@ enum PositionState {
 };
 
 class Button{
-protected:
+public:
     sf::RectangleShape rectangle;
     sf::Texture buttonTexture;
     sf::RectangleShape rectChoose;
@@ -72,13 +72,14 @@ public:
 
 class LetterButton: public Button{
 protected:
-    char letter = ' ';
-    char appropriateLetter;
+    std::wstring letter = L" ";
+    std::wstring appropriateLetter = L" ";
     bool isEmpty = true;
 public:
-    explicit LetterButton(char c);
+    explicit LetterButton();
     bool is_correct() const;
-    void writeLetter(sf::Font& font);
+    void setApproriateLetter(std::wstring);
+    void writeLetter();
     void ChangeColor();
 };
 

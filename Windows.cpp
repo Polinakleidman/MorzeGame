@@ -18,6 +18,10 @@ void GameProcess::render(sf::Window &Window) {
     Window.create(sf::VideoMode(1200, 800), "Game is on");
 }
 
+void Alphabet::render(sf::Window& Window){
+    Window.create(sf::VideoMode(1200, 800), "Recall alphabet");
+}
+
 Menu::Menu() {
 
     WatchMorzeButton = Button();
@@ -50,12 +54,14 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
 
     std::vector<std::wstring> phrase = {{L"к", L"а", L"к", L" ", L"д", L".", L"л", L"a", L"?"}};
 
-    givenPhrase = std::vector<Button>(phrase.size());
-    enterPhrase = std::vector<Button>(phrase.size());
+    givenPhrase = std::vector<LetterButton>(phrase.size());
+    enterPhrase = std::vector<LetterButton>(phrase.size());
 
     for (int i = 0; i < givenPhrase.size(); ++i) {
         givenPhrase[i].colorChange = false;
+        givenPhrase[i].setApproriateLetter(phrase[i]);
         factory.CreateLetterButton(givenPhrase[i], 150 + i * 100, 270, phrase[i]);
+        enterPhrase[i].setApproriateLetter(phrase[i]);
     }
 
 
@@ -81,4 +87,13 @@ AllLevels::AllLevels(){
     }
     std::cout<<LevelButtons.size();
     //factory.CreateToLevelButtons(levelButtons);
+}
+
+Alphabet::Alphabet() {
+    MenuButton = Button();
+    AlphabetButton = Button();
+    AlphabetButton.colorChange = false;
+    factory.CreateMorzeAlphabet(AlphabetButton);
+    factory.CreateMenuButton(MenuButton);
+
 }

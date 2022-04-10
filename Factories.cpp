@@ -66,10 +66,21 @@ void GameProcessFactory::CreateLabel(Label& label, int level, int complexity) {
                  800, 200);
 }
 
-void GameProcessFactory::CreateLetterButton(Button& letter_button, int x, int y, std::wstring& letter) {
+void GameProcessFactory::CreateLetterButton(LetterButton& letter_button, int x, int y, std::wstring& letter) {
     letter_button.set_all(letter, 35, {0, 0, 139, 230},
                         "../button.png", middle, middle, sf::Color::Yellow, x, y,
                         80, 80);
 }
 
-
+void MorzeFactory::CreateMenuButton(Button& menuButton){
+    menuButton.set_all(L"Вернуться\nк меню", 35, {100, 200, 40, 230},
+                       "../button.png", middle, middle, sf::Color::Blue, 480, 650,
+                       240, 100);
+}
+void MorzeFactory::CreateMorzeAlphabet(Button& AlphabetPhoto) {
+    sf::Texture texture;
+    texture.loadFromFile("../Alphabet.jpg");
+    AlphabetPhoto.setTexture(texture);
+    AlphabetPhoto.setPosition({150, 70});
+    AlphabetPhoto.setSize({900, 520});
+}

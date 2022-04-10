@@ -28,7 +28,9 @@ public:
 };
 
 class MorzeFactory: public Factory{
+public:
     void CreateMenuButton(Button&);
+    void CreateMorzeAlphabet(Button&);
 };
 
 class LevelListFactory: public Factory{
@@ -42,7 +44,7 @@ public:
     void CreateLabel(Label&, int level, int complexity);
     void CreateToLevelListButton(Button&);
     void CreateCheckButton(Button&) ;
-    void CreateLetterButton(Button&, int x, int y, std::wstring& letter);
+    void CreateLetterButton(LetterButton&, int x, int y, std::wstring& letter);
 };
 
 class GameCheckedFactory: public Factory{

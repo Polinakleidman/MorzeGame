@@ -262,25 +262,30 @@ sf::Vector2f Button::getSize() {
     return rectangle.getSize();
 }
 
-LetterButton::LetterButton(char c){
+LetterButton::LetterButton(){
     rectangle.setSize({100, 100});
-    appropriateLetter = c;
     isEmpty = false;
+    font.loadFromFile("../arialbd.ttf");
 }
 bool LetterButton::is_correct() const {
-    if (letter == appropriateLetter){
+    if (letter == appropriateLetter || !colorChange){
         return true;
     }
     return false;
 }
 
-void LetterButton::writeLetter(sf::Font& font) {
+void LetterButton::writeLetter() {
     char s;
     std::cin>>s;
     letter = s;
     sf::Text text0(s, font, 25);
     setText(text0);
     setTextPosition(middle, middle);
+    std::cout<<s;
+}
+
+void LetterButton::setApproriateLetter(const std::wstring a) {
+    appropriateLetter = a;
 }
 
 void LetterButton::ChangeColor(){

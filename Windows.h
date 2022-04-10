@@ -25,9 +25,10 @@ public:
 
 class Alphabet: public Renderable{
 private:
-    Factory factory;
+    MorzeFactory factory;
 public:
     Button MenuButton;
+    Button AlphabetButton;
 public:
     Alphabet();
     void render(sf::Window& window);
@@ -54,8 +55,8 @@ public:
     Label Label0;
     Button CheckButton;
     Button ToLevelListButton;
-    std::vector<Button> givenPhrase;
-    std::vector<Button> enterPhrase;
+    std::vector<LetterButton> givenPhrase;
+    std::vector<LetterButton> enterPhrase;
 public:
     GameProcess(int cur_level, int cur_complexity);
     void render(sf::Window& window);
