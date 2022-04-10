@@ -54,7 +54,7 @@ void GameProcessFactory::CreateToLevelListButton(Button& ToLevelListButton) {
 
 void GameProcessFactory::CreateCheckButton(Button& CheckButton) {
     CheckButton.set_all(L"Проверить", 35, {0, 0, 139, 230},
-                            "../button.png", middle, middle, sf::Color::Yellow, 800, 550,
+                            "../button.png", middle, middle, sf::Color::Yellow, 830, 550,
                             250, 150);
 }
 
@@ -69,7 +69,7 @@ void GameProcessFactory::CreateLabel(Label& label, int level, int complexity) {
 void GameProcessFactory::CreateLetterButton(Button& letter_button, int x, int y, std::wstring& letter) {
     letter_button.set_all(letter, 35, {0, 0, 139, 230},
                         "../button.png", middle, middle, sf::Color::Yellow, x, y,
-                        80, 80);
+                        70, 70);
 }
 
 

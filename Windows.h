@@ -71,7 +71,9 @@ public:
     Button AgainButton;
     Button NextButton;
     Button ToLevelListButton;
+    std::vector<Button> givenPhrase;
+    std::vector<Button> enterPhrase;
 public:
-    GameChecked();
+    GameChecked(std::vector<bool>);
     void render(sf::Window& window);
 };

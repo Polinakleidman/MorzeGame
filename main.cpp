@@ -229,7 +229,7 @@ void work_with_level_window(int level, int complexity){
 
             if (gameprocess.ToLevelListButton.isPressed()) {
                 GPWindow.close();
-                //work_with_Morze_window();
+                work_with_Level_List();
             } else if (gameprocess.CheckButton.isPressed()) {
                 GPWindow.close();
                 //work_with_Level_List();
@@ -253,7 +253,6 @@ void work_with_level_window(int level, int complexity){
     }
 
 }
-
 
 int main(){
     work_with_level_window(1, 1);

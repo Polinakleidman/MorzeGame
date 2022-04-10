@@ -53,19 +53,22 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     givenPhrase = std::vector<Button>(phrase.size());
     enterPhrase = std::vector<Button>(phrase.size());
 
+    int length = givenPhrase.size() * 70 + (givenPhrase.size() - 1) * 10;
+    int pass = 600 - length/2;
     for (int i = 0; i < givenPhrase.size(); ++i) {
         givenPhrase[i].colorChange = false;
-        factory.CreateLetterButton(givenPhrase[i], 150 + i * 100, 270, phrase[i]);
+        factory.CreateLetterButton(givenPhrase[i], pass + i * 80, 270, phrase[i]);
     }
 
 
     for (int i = 0; i < givenPhrase.size(); ++i) {
         std::wstring nostring = L" ";
         if (phrase[i][0] == '.' || phrase[i][0] == '-') {
-            factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, nostring);
+            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, nostring);
+            enterPhrase[i].setFillColor(sf::Color::Cyan);
         } else {
             enterPhrase[i].colorChange = false;
-            factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, phrase[i]);
+            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, phrase[i]);
         }
     }
 }
