@@ -54,8 +54,8 @@ public:
     Label Label0;
     Button CheckButton;
     Button ToLevelListButton;
-    std::vector<Button> givenPhrase;
-    std::vector<Button> enterPhrase;
+    std::vector<LetterButton> givenPhrase;
+    std::vector<LetterButton> enterPhrase;
 public:
     GameProcess(int cur_level, int cur_complexity);
     void render(sf::Window& window);
@@ -64,16 +64,17 @@ public:
 
 class GameChecked: public Renderable{
 private:
-    Factory factory;
+    GameCheckedFactory factory;
 public:
     int level;
     int complexity;
     Button AgainButton;
     Button NextButton;
     Button ToLevelListButton;
-    std::vector<Button> givenPhrase;
-    std::vector<Button> enterPhrase;
+    std::vector<LetterButton> givenPhrase;
+    std::vector<LetterButton> enterPhrase;
+    Label Label0;
 public:
-    GameChecked(std::vector<bool>);
+    GameChecked(std::vector<bool>, int cur_level, int cur_complexity);
     void render(sf::Window& window);
 };

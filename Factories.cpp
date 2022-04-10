@@ -72,4 +72,35 @@ void GameProcessFactory::CreateLetterButton(Button& letter_button, int x, int y,
                         70, 70);
 }
 
+void GameCheckedFactory::CreateAgainButton(Button& againbutton) {
+    againbutton.set_all(L"Заново", 35, {0, 0, 139, 230},
+                        "../button.png", middle, middle, sf::Color::Yellow, 120, 550,
+                        250, 150);
+}
 
+void GameCheckedFactory::CreateNextLevelButton(Button& nextbutton) {
+    nextbutton.set_all(L"Следующий\nуровень", 35, {0, 0, 139, 230},
+                        "../button.png", middle, middle, sf::Color::Yellow, 830, 550,
+                        250, 150);
+}
+
+void GameCheckedFactory::CreateToLevelListButton(Button& tolevellistbutton) {
+    tolevellistbutton.set_all(L"К выбору\nуровней", 35, {0, 0, 139, 230},
+                        "../button.png", middle, middle, sf::Color::Yellow, 500, 550,
+                        250, 150);
+}
+
+void::GameCheckedFactory::CreateLetterButton(Button& letter_button, int x, int y, std::wstring& letter){
+    letter_button.set_all(letter, 35, {0, 0, 139, 230},
+                          "../button.png", middle, middle, sf::Color::Yellow, x, y,
+                          70, 70);
+    letter_button.colorChange = false;
+}
+
+void GameCheckedFactory::CreateLabel(Label& label, int level, int complexity) {
+    std::wstring lab;
+    lab = L"Уровень " + std::to_wstring(complexity) + L"." + std::to_wstring(level);
+    label.setAll(lab, 100, sf::Color{0x240803ff},
+                 300, 100,
+                 800, 200);
+}

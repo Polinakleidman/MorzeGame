@@ -77,6 +77,7 @@ protected:
     bool isEmpty = true;
 public:
     explicit LetterButton(char c);
+    explicit LetterButton();
     bool is_correct() const;
     void writeLetter(sf::Font& font);
     void ChangeColor();

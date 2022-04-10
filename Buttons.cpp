@@ -267,6 +267,11 @@ LetterButton::LetterButton(char c){
     appropriateLetter = c;
     isEmpty = false;
 }
+LetterButton::LetterButton(){
+    rectangle.setSize({100, 100});
+    isEmpty = true;
+}
+
 bool LetterButton::is_correct() const {
     if (letter == appropriateLetter){
         return true;
