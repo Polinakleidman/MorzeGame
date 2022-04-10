@@ -1,3 +1,4 @@
+#pragma once
 #include "Label.h"
 
 Label::Label(const std::string str)
@@ -15,7 +16,7 @@ void Label::draw(sf::RenderWindow &window)
 }
 
 
-void Label::setAll(const std::string str, int text_size, sf::Color TextColor,
+void Label::setAll(const std::wstring str, int text_size, sf::Color TextColor,
                    float positionX, float positionY,
                    float sizeX, float sizeY)
 {

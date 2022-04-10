@@ -25,10 +25,12 @@ protected:
     sf::RenderWindow* window = 0;
     float maxLengthText = FLT_MAX;
     void setTextHeight();
+public:
+    sf::Font font;
+    bool colorChange = true;
 
 public:
     Button();
-    sf::Font font;
     void setTexture(sf ::Texture texture);
     void draw(sf::RenderWindow& window);
     bool isPressed();

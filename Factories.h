@@ -1,20 +1,22 @@
 #pragma once
 #include "Buttons.h"
 #include "Label.h"
+#include<string>
 class Factory{
     //таких кнопок на странице не больше одной, так что координаты не нужны
     //все будет сразу прописано в дочерней фабрике
 public:
-    Button CreateMenuButton();
-    Button CreateMorzeButton();
-    Button CreateToLevelListButton();
-    Button CreateCheckButton();
-    Button CreateNextLevelButton();
-    Button CreateAgainButton();
+    void CreateMenuButton(Button&);
+    void CreateMorzeButton(Button&);
+
+    void CreateToLevelListButton(Button&);
+    void CreateCheckButton(Button&);
+    void CreateNextLevelButton(Button&);
+    void CreateAgainButton(Button&);
 
     //этих кнопок на странице много - нужны координаты
-    Button CreateToLevelButton(int x, int y);
-    Button CreateLetterButton(int x, int y);
+    void CreateToLevelButtons(ToLevelButton&, int i);
+    void CreateLetterButton(Button&, int x, int y, std::wstring&);
 };
 
 class MenuFactory: public Factory{
@@ -26,7 +28,7 @@ public:
 };
 
 class MorzeFactory: public Factory{
-    Button CreateMenuButton();
+    void CreateMenuButton(Button&);
 };
 
 class LevelListFactory: public Factory{
@@ -36,13 +38,15 @@ public:
 };
 
 class GameProcessFactory: public Factory{
-    Button CreateToLevelListButton();
-    Button CreateCheckButton();
-    Button CreateLetterButton(int x, int y);
+public:
+    void CreateLabel(Label&, int level, int complexity);
+    void CreateToLevelListButton(Button&);
+    void CreateCheckButton(Button&) ;
+    void CreateLetterButton(Button&, int x, int y, std::wstring& letter);
 };
 
 class GameCheckedFactory: public Factory{
-    Button CreateToLevelListButton();
-    Button CreateNextLevelButton();
-    Button CreateAgainButton();
+    void CreateToLevelListButton(Button&);
+    void CreateNextLevelButton(Button&);
+    void CreateAgainButton(Button&);
 };

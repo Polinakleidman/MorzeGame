@@ -1,9 +1,9 @@
-#pragma-once
+#pragma once
 #include "SFML/Graphics.hpp"
 #include <stdio.h>
 #include <string.h>
 //#include <windows.h>
-#include <float.h>
+#include <cfloat>
 #include <vector>
 #include "Buttons.h"
 #include <iostream>
@@ -101,8 +101,12 @@ bool Button::isPressed() {
 
 
 void Button::isCursorInsideBox() {
-    sf::Color color({0, 0, 0, 20});
 
+    sf::Color color({0, 0, 0, 0});
+
+    if(colorChange) {
+        color = sf::Color({0, 0, 0, 40});
+    }
     rectChoose.setFillColor(color);
     rectChoose.setSize(rectangle.getSize());
     rectChoose.setPosition(rectangle.getPosition());
@@ -280,6 +284,9 @@ void LetterButton::writeLetter(sf::Font& font) {
 }
 
 void LetterButton::ChangeColor(){
+    if(!colorChange){
+        return;
+    }
     if (is_correct()){
         rectangle.setFillColor({0, 255, 0, 200});
     }

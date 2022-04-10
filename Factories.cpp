@@ -5,28 +5,26 @@
 
 
  void MenuFactory::CreateLabel(Label& label) {
-    label.setAll("Morze Game", 100, sf::Color{0x240803ff},
+    label.setAll(L"Morze Game", 100, sf::Color{0x240803ff},
                   300, 150,
                  800, 200);
 
 }
 
 void MenuFactory::CreateLabelMorze(Label &label) {
-    label.setAll("-- --- .-. --.. .   --. .- -. .", 100, sf::Color{0x170603ff},
+    label.setAll(L"-- --- .-. --.. .   --. .- -. .", 100, sf::Color{0x170603ff},
                  130, 300,
                  800, 200);
 }
 
  void MenuFactory::CreateMorzeButton(Button& MorzeButton) {
 
-   MorzeButton.set_all(L"Открыть\nазбуку\nМорзе", 35, sf::Color::Yellow,
+    MorzeButton.set_all(L"Открыть\nазбуку\nМорзе", 35, sf::Color::Yellow,
                         "../button.png", middle, middle, sf::Color::Magenta, 120, 550,
                         250, 150);
-
 }
 
 void MenuFactory::CreateToLevelListButton(Button& LevelListButton){
-
     LevelListButton.set_all(L"Выбор\nУровней", 35, {0, 0, 139, 230},
                         "../button.png", middle, middle, sf::Color::Yellow, 800, 550,
                         250, 150);
@@ -47,3 +45,31 @@ void LevelListFactory::CreateToLevelButtons(ToLevelButton& button, int i) {
                                 160+(i%5)*170, 80+(i/5)*170, 150, 150);
         std::cout<<100+(i/5)*200<<" ";
 }
+
+void GameProcessFactory::CreateToLevelListButton(Button& ToLevelListButton) {
+    ToLevelListButton.set_all(L"Вернуться\nк выбору\nуровней", 35, {0, 0, 139, 230},
+                            "../button.png", middle, middle, sf::Color::Yellow, 120, 550,
+                            250, 150);
+}
+
+void GameProcessFactory::CreateCheckButton(Button& CheckButton) {
+    CheckButton.set_all(L"Проверить", 35, {0, 0, 139, 230},
+                            "../button.png", middle, middle, sf::Color::Yellow, 800, 550,
+                            250, 150);
+}
+
+void GameProcessFactory::CreateLabel(Label& label, int level, int complexity) {
+    std::wstring lab;
+    lab = L"Уровень " + std::to_wstring(complexity) + L"." + std::to_wstring(level);
+    label.setAll(lab, 100, sf::Color{0x240803ff},
+                 300, 100,
+                 800, 200);
+}
+
+void GameProcessFactory::CreateLetterButton(Button& letter_button, int x, int y, std::wstring& letter) {
+    letter_button.set_all(letter, 35, {0, 0, 139, 230},
+                        "../button.png", middle, middle, sf::Color::Yellow, x, y,
+                        80, 80);
+}
+
+

@@ -1,10 +1,9 @@
 #pragma once
 #include <iostream>
 #include "Windows.h"
-//#include "Buttons.h"
-#include "Factories.h"
-//#include "Label.h"
+#include "Label.h"
 #include "SFML/Graphics.hpp"
+#include<string>
 
 
 void work_with_menu_window();
@@ -169,7 +168,6 @@ void work_with_Morze_window(){
 void work_with_menu_window(){
     setlocale(LC_ALL, "russian");
     Menu menu;
-    //Alphabet alphabet;
     sf::RenderWindow MenuWindow;
     menu.render(MenuWindow);
     std::cout<<"ok1";
@@ -209,8 +207,54 @@ void work_with_menu_window(){
 }
 
 
+void work_with_level_window(int level, int complexity){
+    setlocale(LC_ALL, "russian");
+    GameProcess gameprocess(level, complexity);
+    sf::RenderWindow GPWindow;
+    gameprocess.render(GPWindow);
+    std::cout<<"ok1";
+    std::cout<<"ok2";
+    std::cout<<"ok";
+
+    bool flag = false;
+
+    while (GPWindow.isOpen())
+    {
+        sf::Event event;
+
+        while (GPWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                GPWindow.close();
+            }
+
+            if (gameprocess.ToLevelListButton.isPressed()) {
+                GPWindow.close();
+                //work_with_Morze_window();
+            } else if (gameprocess.CheckButton.isPressed()) {
+                GPWindow.close();
+                //work_with_Level_List();
+            }
+        }
+
+        GPWindow.clear(sf::Color::White);
+
+        if(!flag){
+            gameprocess.CheckButton.draw(GPWindow);
+            gameprocess.ToLevelListButton.draw(GPWindow);
+            gameprocess.Label0.draw(GPWindow);
+            for(auto but: gameprocess.givenPhrase){
+                but.draw(GPWindow);
+            }
+            for(auto but: gameprocess.enterPhrase){
+                but.draw(GPWindow);
+            }
+        }
+        GPWindow.display();
+    }
+
+}
 
 
 int main(){
-    work_with_Level_List();
+    work_with_level_window(1, 1);
 }

@@ -29,6 +29,7 @@ private:
 public:
     Button MenuButton;
 public:
+    Alphabet();
     void render(sf::Window& window);
 };
 
@@ -39,18 +40,24 @@ public:
     std::vector<ToLevelButton> LevelButtons;
     Button MenuButton;
 public:
-    void render(sf::Window& window);
     AllLevels();
+    void render(sf::Window& window);
 };
 
 class GameProcess: public Renderable{
 private:
-    Factory factory;
+    GameProcessFactory factory;
 public:
+    int level;
+    int complexity;
+    sf::RenderWindow window;
+    Label Label0;
     Button CheckButton;
     Button ToLevelListButton;
-    std::vector<Button> Phrase;
+    std::vector<Button> givenPhrase;
+    std::vector<Button> enterPhrase;
 public:
+    GameProcess(int cur_level, int cur_complexity);
     void render(sf::Window& window);
 };
 
@@ -65,5 +72,6 @@ public:
     Button NextButton;
     Button ToLevelListButton;
 public:
+    GameChecked();
     void render(sf::Window& window);
 };

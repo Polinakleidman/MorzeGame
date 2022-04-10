@@ -1,3 +1,4 @@
+#pragma once
 #include "SFML/Graphics.hpp"
 #include <string>
 #include <cfloat>
@@ -14,7 +15,7 @@ private:
 public:
     Label(const std::string str = "");
     void draw(sf::RenderWindow &window);
-    void setAll(const std::string str, int text_size, sf::Color TextColor,
+    void setAll(const std::wstring str, int text_size, sf::Color TextColor,
                 float positionX, float positionY,
                 float sizeX, float sizeY);
 };
