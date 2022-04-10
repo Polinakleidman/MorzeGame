@@ -81,6 +81,7 @@ public:
     void setApproriateLetter(std::wstring);
     void writeLetter();
     void ChangeColor();
+    std::wstring getLetter();
 };
 
 

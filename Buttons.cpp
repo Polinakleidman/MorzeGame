@@ -267,6 +267,8 @@ LetterButton::LetterButton(){
     isEmpty = false;
     font.loadFromFile("../arialbd.ttf");
 }
+
+
 bool LetterButton::is_correct() const {
     std::string s0;
     s0.push_back(letter);
@@ -283,7 +285,7 @@ void LetterButton::writeLetter() {
 //    std::string s0;
 //    s0.push_back(s);
 //    std::string s0 = "д";
-    sf::Text text0(sf::String::fromUtf8(s.begin(), s.end()), font, 30);
+    sf::Text text0(sf::String::fromUtf8(s.begin(), s.end()), font, 15);
     text0.setFillColor({0, 0, 139, 230});
     setText(text0);
     setTextPosition(middle, middle);
@@ -305,6 +307,10 @@ void LetterButton::ChangeColor(){
         rectangle.setFillColor({255, 0, 0, 200});
     }
     setTextPosition(middle, middle);
+}
+
+std::wstring LetterButton::getLetter(){
+    std::wstring answer = std::to_wstring(letter);
 }
 
 TransportButton::TransportButton() {

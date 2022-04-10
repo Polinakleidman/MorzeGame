@@ -5,6 +5,10 @@
 #include "SFML/Graphics.hpp"
 #include<string>
 
+std::vector<bool> ifCorrectAnswer;
+std::vector<std::wstring> PlayerAnswer;
+
+
 
 void work_with_menu_window();
 void work_with_level_window(int, int);
@@ -265,9 +269,9 @@ void work_with_level_window(int level, int complexity){
                 work_with_Level_List();
             } else if (gameprocess.CheckButton.isPressed()) {
                 GPWindow.close();
-                std::vector<bool> checked_letters;
                 for(auto x: gameprocess.enterPhrase){
-                    checked_letters.push_back(x.is_correct());
+                    ifCorrectAnswer.push_back(x.is_correct());
+                    PlayerAnswer.push_back(x.getLetter());
                     //work_with_check_level(checked_letters, level, compexity);
                 }
             }else{
@@ -298,7 +302,60 @@ void work_with_level_window(int level, int complexity){
 
 }
 
+void work_with_checked_level(std::vector<bool>& playerAns, int level, int complexity){
+    setlocale(LC_ALL, "russian");
+    GameChecked gamechecked(playerAns, level, complexity);
+    sf::RenderWindow GPWindow;
+    gamechecked.render(GPWindow);
+
+    bool flag = false;
+
+    while (GPWindow.isOpen())
+    {
+        sf::Event event;
+
+        while (GPWindow.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                GPWindow.close();
+            }
+
+            if (gamechecked.ToLevelListButton.isPressed()) {
+                GPWindow.close();
+                work_with_Level_List();
+            } else if (gamechecked.NextButton.isPressed()) {
+                GPWindow.close();
+                if(level < 5){
+                    work_with_level_window(level + 1, complexity);
+                } else if (complexity < 3){
+                    work_with_level_window(1, complexity + 1);
+                } else {
+                    work_with_Level_List();
+                }
+            } else if(gamechecked.AgainButton.isPressed()){
+                GPWindow.close();
+                work_with_level_window(level, complexity);
+            }
+        }
+
+        GPWindow.clear(sf::Color::White);
+
+        if(!flag){
+            gamechecked.AgainButton.draw(GPWindow);
+            gamechecked.ToLevelListButton.draw(GPWindow);
+            gamechecked.NextButton.draw(GPWindow);
+            gamechecked.Label0.draw(GPWindow);
+            for(auto but: gamechecked.givenPhrase){
+                but.draw(GPWindow);
+            }
+            for(auto but: gamechecked.enterPhrase){
+                but.draw(GPWindow);
+            }
+        }
+        GPWindow.display();
+    }
+}
 
 int main(){
-    work_with_level_window(1, 1);
+    std::vector<bool> ans = {1, 1, 0, 0, 1, 1, 0, 0, 1};
+    work_with_checked_level(ans, 1, 1);
 }

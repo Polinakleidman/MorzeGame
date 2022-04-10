@@ -17,6 +17,9 @@ void AllLevels::render(sf::Window& Window) {
 void GameProcess::render(sf::Window &Window) {
     Window.create(sf::VideoMode(1200, 800), "Game is on");
 }
+void GameChecked::render(sf::Window &Window) {
+    Window.create(sf::VideoMode(1200, 800), "Your answer has been checked");
+}
 
 void Alphabet::render(sf::Window& Window){
     Window.create(sf::VideoMode(1200, 800), "Recall alphabet");
@@ -46,21 +49,17 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     Label0 = Label();
     factory.CreateLabel(Label0, level, complexity);
 
-    //std::string level_file = "../Levels/Complexity" + std::to_string(complexity) + ".txt";
-
-    //Complexity1 levels;
-
-    //std::vector<std::string> level_phrase = levels.levels[level];
-
     std::vector<std::wstring> phrase = {{L"к", L"а", L"к", L" ", L"д", L".", L"л", L"a", L"?"}};
 
     givenPhrase = std::vector<LetterButton>(phrase.size());
     enterPhrase = std::vector<LetterButton>(phrase.size());
 
+    int length = givenPhrase.size() * 70 + (givenPhrase.size() - 1) * 10;
+    int pass = 600 - length/2;
     for (int i = 0; i < givenPhrase.size(); ++i) {
         givenPhrase[i].colorChange = false;
         givenPhrase[i].setApproriateLetter(phrase[i]);
-        factory.CreateLetterButton(givenPhrase[i], 150 + i * 100, 270, phrase[i]);
+        factory.CreateLetterButton(givenPhrase[i], pass + i * 80, 270, phrase[i]);
         enterPhrase[i].setApproriateLetter(phrase[i]);
     }
 
@@ -68,10 +67,11 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     for (int i = 0; i < givenPhrase.size(); ++i) {
         std::wstring nostring = L" ";
         if (phrase[i][0] == '.' || phrase[i][0] == '-') {
-            factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, L"?");
+            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, L"?");
+            enterPhrase[i].setFillColor(sf::Color::Cyan);
         } else {
             enterPhrase[i].colorChange = false;
-            factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, phrase[i]);
+            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, phrase[i]);
         }
     }
 }
@@ -96,4 +96,42 @@ Alphabet::Alphabet() {
     factory.CreateMorzeAlphabet(AlphabetButton);
     factory.CreateMenuButton(MenuButton);
 
+}
+
+GameChecked::GameChecked(std::vector<bool> players_answer, int cur_level, int cur_complexity){
+    level = cur_level;
+    complexity = cur_complexity;
+    ToLevelListButton = Button();
+    factory.CreateToLevelListButton(ToLevelListButton);
+    AgainButton = Button();
+    factory.CreateAgainButton(AgainButton);
+    Label0 = Label();
+    factory.CreateLabel(Label0, level, complexity);
+    NextButton = Button();
+    factory.CreateNextLevelButton(NextButton);
+
+
+    std::vector<std::wstring> phrase = {{L"к", L"а", L"к", L" ", L"д", L".", L"л", L"a", L"?"}};
+
+    givenPhrase = std::vector<LetterButton>(phrase.size());
+    enterPhrase = std::vector<LetterButton>(phrase.size());
+
+    int length = givenPhrase.size() * 70 + (givenPhrase.size() - 1) * 10;
+    int pass = 600 - length/2;
+    for (int i = 0; i < givenPhrase.size(); ++i) {
+        factory.CreateLetterButton(givenPhrase[i], pass + i * 80, 270, phrase[i]);
+    }
+
+    for (int i = 0; i < givenPhrase.size(); ++i) {
+        std::wstring nostring = L"?";
+        if (phrase[i][0] == '.' || phrase[i][0] == '-') {
+            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, nostring);
+        } else {
+            enterPhrase[i].colorChange = false;
+            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, phrase[i]);
+        }
+        if(!players_answer[i]){
+            enterPhrase[i].setFillColor(sf::Color::Red);
+        }
+    }
 }

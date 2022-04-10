@@ -65,14 +65,17 @@ public:
 
 class GameChecked: public Renderable{
 private:
-    Factory factory;
+    GameCheckedFactory factory;
 public:
     int level;
     int complexity;
     Button AgainButton;
     Button NextButton;
     Button ToLevelListButton;
+    std::vector<LetterButton> givenPhrase;
+    std::vector<LetterButton> enterPhrase;
+    Label Label0;
 public:
-    GameChecked();
+    GameChecked(std::vector<bool>, int cur_level, int cur_complexity);
     void render(sf::Window& window);
 };
