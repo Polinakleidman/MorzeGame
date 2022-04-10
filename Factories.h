@@ -44,7 +44,7 @@ public:
     void CreateLabel(Label&, int level, int complexity);
     void CreateToLevelListButton(Button&);
     void CreateCheckButton(Button&) ;
-    void CreateLetterButton(LetterButton&, int x, int y, std::wstring& letter);
+    void CreateLetterButton(LetterButton&, int x, int y, std::wstring letter);
 };
 
 class GameCheckedFactory: public Factory{

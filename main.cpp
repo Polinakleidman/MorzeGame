@@ -120,7 +120,7 @@ void work_with_Level_List(){
             }
 
 
-            for (auto a:allLevels.LevelButtons){
+            for (auto& a:allLevels.LevelButtons){
                 if (a.isPressed()){
                     allLevelsWindow.close();
                     work_with_level_window(a.getNumberOfLevel()+1, a.getComlexity()+1);
@@ -241,14 +241,14 @@ void work_with_menu_window(){
 
 
 void work_with_level_window(int level, int complexity){
-    setlocale(LC_ALL, "russian");
+//    setlocale(LC_ALL, "russian");
     GameProcess gameprocess(level, complexity);
     sf::RenderWindow GPWindow;
     gameprocess.render(GPWindow);
     std::cout<<"ok1";
     std::cout<<"ok2";
     std::cout<<"ok";
-    std::wstring Text = L"a";
+    const std::wstring Text1 = L"a";
     bool flag = false;
 
     while (GPWindow.isOpen())
@@ -265,18 +265,16 @@ void work_with_level_window(int level, int complexity){
                 work_with_Level_List();
             } else if (gameprocess.CheckButton.isPressed()) {
                 GPWindow.close();
+                std::vector<bool> checked_letters;
                 for(auto x: gameprocess.enterPhrase){
-                    std::cout<<x.is_correct()<<"*";
+                    checked_letters.push_back(x.is_correct());
+                    //work_with_check_level(checked_letters, level, compexity);
                 }
-                //work_with_Level_List();
             }else{
                 for(auto& but: gameprocess.enterPhrase){
                     if (but.isPressed() && but.colorChange){
-                        //GPWindow.close();
-//                        but.writeLetter();
-                    but.set_all(Text, 35, {0, 0, 139, 230},
-            "../button.png", middle, middle, sf::Color::Yellow, 120, 100,
-            80, 80);
+                        but.writeLetter();
+
                     }
                 }
             }
@@ -302,5 +300,5 @@ void work_with_level_window(int level, int complexity){
 
 
 int main(){
-    work_with_menu_window();
+    work_with_level_window(1, 1);
 }

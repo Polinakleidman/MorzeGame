@@ -68,7 +68,7 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     for (int i = 0; i < givenPhrase.size(); ++i) {
         std::wstring nostring = L" ";
         if (phrase[i][0] == '.' || phrase[i][0] == '-') {
-            factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, nostring);
+            factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, L"?");
         } else {
             enterPhrase[i].colorChange = false;
             factory.CreateLetterButton(enterPhrase[i], 150 + i * 100, 400, phrase[i]);
