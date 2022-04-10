@@ -66,7 +66,7 @@ void GameProcessFactory::CreateLabel(Label& label, int level, int complexity) {
                  800, 200);
 }
 
-void GameProcessFactory::CreateLetterButton(LetterButton& letter_button, int x, int y, std::wstring& letter) {
+void GameProcessFactory::CreateLetterButton(LetterButton& letter_button, int x, int y, std::wstring letter) {
     letter_button.set_all(letter, 35, {0, 0, 139, 230},
                         "../button.png", middle, middle, sf::Color::Yellow, x, y,
                         80, 80);
