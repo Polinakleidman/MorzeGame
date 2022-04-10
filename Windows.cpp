@@ -65,7 +65,7 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
 
 
     for (int i = 0; i < givenPhrase.size(); ++i) {
-        std::wstring nostring = L" ";
+        std::wstring nostring = L"?";
         if (phrase[i][0] == '.' || phrase[i][0] == '-') {
             factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, L"?");
             enterPhrase[i].setFillColor(sf::Color::Cyan);
@@ -85,8 +85,6 @@ AllLevels::AllLevels(){
         LevelButtons[i].setComplexity(i/5);
         LevelButtons[i].setNumberOfLevel(i%5);
     }
-    std::cout<<LevelButtons.size();
-    //factory.CreateToLevelButtons(levelButtons);
 }
 
 Alphabet::Alphabet() {
@@ -98,7 +96,7 @@ Alphabet::Alphabet() {
 
 }
 
-GameChecked::GameChecked(std::vector<bool> players_answer, int cur_level, int cur_complexity){
+GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<bool> players_mistakes, int cur_level, int cur_complexity){
     level = cur_level;
     complexity = cur_complexity;
     ToLevelListButton = Button();
@@ -120,17 +118,14 @@ GameChecked::GameChecked(std::vector<bool> players_answer, int cur_level, int cu
     int pass = 600 - length/2;
     for (int i = 0; i < givenPhrase.size(); ++i) {
         factory.CreateLetterButton(givenPhrase[i], pass + i * 80, 270, phrase[i]);
+        givenPhrase[i].colorChange = false;
     }
 
     for (int i = 0; i < givenPhrase.size(); ++i) {
-        std::wstring nostring = L"?";
-        if (phrase[i][0] == '.' || phrase[i][0] == '-') {
-            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, nostring);
-        } else {
-            enterPhrase[i].colorChange = false;
-            factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, phrase[i]);
-        }
-        if(!players_answer[i]){
+        enterPhrase[i].colorChange = false;
+        std::wstring nostring = L" ";
+        factory.CreateLetterButton(enterPhrase[i], pass + i * 80, 400, players_answer[i]);
+        if(!players_mistakes[i]){
             enterPhrase[i].setFillColor(sf::Color::Red);
         }
     }

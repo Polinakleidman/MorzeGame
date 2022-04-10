@@ -9,99 +9,11 @@ std::vector<bool> ifCorrectAnswer;
 std::vector<std::wstring> PlayerAnswer;
 
 
-
 void work_with_menu_window();
 void work_with_level_window(int, int);
-/*
-int work_with_checked_level(const std::vector<bool>& checked_letters, const std::string& phrase0){
-    GameChecked level;
-    sf::RenderWindow& levelWindow = level.createCheckedLevelWindow();
-    ToLevelListButton toLevelListButton = level.CreateToLevelListButton();
-    AgainButton againButton = level.CreateAgainButton();
-    NextLevelButton nextLevelButton = level.CreateNextButton();
-    Label phrase = level.CreateColoredPhrase(phrase0, checked_letters);
-    while (levelWindow.isOpen())
-    {
-        sf::Event event;
+void work_with_checked_level(std::vector<std::wstring>& playersAnswer, std::vector<bool>& playerMistakes, int level, int complexity);
+void work_with_Level_List();
 
-        while (levelWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed){
-                levelWindow.close();
-                return 2;
-            }
-        }
-
-        if (toLevelListButton.isClicked()){
-            levelWindow.close();
-            return 2;
-        }
-
-        if (againButton.isClicked()){
-            levelWindow.close();
-            return 0;
-        }
-        if (nextLevelButton.isClicked()){
-            levelWindow.close();
-            return 1;
-        }
-        levelWindow.display();
-    }
-}
-
-bool work_with_level(int complexity, int number){
-    GameProcess level;
-    sf::RenderWindow& levelWindow = level.createLevelWindow();
-    ToLevelListButton back = level.CreateToLevelListButton();
-    CheckButton checkButton = level.CreateCheckButton();
-    std::string phrase0 ="как дела";//тут надо считать с текстового файла по complexity и number
-    Label phrase = level.CreatePhrase(phrase0);
-    std::vector<LetterButton> clickablePhrase = level.CreatePhraseWithButtons(phrase, complexity*5+number);
-    while (levelWindow.isOpen())
-    {
-        sf::Event event;
-
-        while (levelWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed){
-                levelWindow.close();
-                return false;
-            }
-        }
-
-        if (back.isClicked()){
-            levelWindow.close();
-            return false;
-        }
-
-        for(int i=0;i<clickablePhrase.size();++i){
-            if (clickablePhrase[i].isClicked()){
-                sf::Font font;
-                sf::Text letter("a", font);//вместо a будет считывание с клавиатуры
-                clickablePhrase[i].writeLetter(letter);
-            }
-        }
-
-        if (checkButton.isClicked()){
-            std::vector<bool> answers;
-            for(auto elem :clickablePhrase){
-                answers.push_back(elem.is_correct());
-            }
-            int result = work_with_checked_level(answers, phrase0);
-            if (result==0){//то есть again
-                continue;
-            }else if (result ==1){ // то есть next
-                levelWindow.close();
-                return true;
-            }else if (result==2){//то есть backtolevellist
-                levelWindow.close();
-                return false;
-            }
-        }
-        levelWindow.display();
-    }
-}
-*/
 void work_with_Level_List(){
     AllLevels allLevels;
     //Alphabet alphabet;
@@ -145,30 +57,6 @@ void work_with_Level_List(){
     }
 }
 
-/*
-void work_with_Morze_window(){
-    Alphabet alphabet;
-    sf::RenderWindow& alphabetWindow = alphabet.createAlphabetWindow();
-    BackToMenuButton back = alphabet.CreateBackToMenuButton();
-    while (alphabetWindow.isOpen())
-    {
-        sf::Event event;
-
-        while (alphabetWindow.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                alphabetWindow.close();
-        }
-
-        if (back.isClicked()){
-            alphabetWindow.close();
-        }
-        alphabetWindow.display();
-        //alphabetWindow.draw(picture); это должно быть изи
-    }
-
-}
-*/
 
 void work_with_Morze_window(){
     setlocale(LC_ALL, "russian");
@@ -277,10 +165,12 @@ void work_with_level_window(int level, int complexity){
             }else{
                 for(auto& but: gameprocess.enterPhrase){
                     if (but.isPressed() && but.colorChange){
+                        std::cout<<"WOW";
                         but.writeLetter();
 
                     }
                 }
+
             }
         }
 
@@ -302,9 +192,9 @@ void work_with_level_window(int level, int complexity){
 
 }
 
-void work_with_checked_level(std::vector<bool>& playerAns, int level, int complexity){
+void work_with_checked_level(std::vector<std::wstring>& playersAnswer, std::vector<bool>& playerMistakes, int level, int complexity){
     setlocale(LC_ALL, "russian");
-    GameChecked gamechecked(playerAns, level, complexity);
+    GameChecked gamechecked(playersAnswer,playerMistakes, level, complexity);
     sf::RenderWindow GPWindow;
     gamechecked.render(GPWindow);
 
@@ -355,7 +245,6 @@ void work_with_checked_level(std::vector<bool>& playerAns, int level, int comple
     }
 }
 
-int main(){
-    std::vector<bool> ans = {1, 1, 0, 0, 1, 1, 0, 0, 1};
-    work_with_checked_level(ans, 1, 1);
+int main() {
+    work_with_menu_window();
 }

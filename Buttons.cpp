@@ -1,7 +1,8 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include <stdio.h>
-#include <string.h>
+#include <string>
+#include<string.h>
 //#include <windows.h>
 #include <cfloat>
 #include <vector>
@@ -96,6 +97,7 @@ bool Button::isPressed() {
 
     if (!isInsideRect) return 0;
 
+    std::cout<<"pressed";
     return 1;
 }
 
@@ -281,6 +283,7 @@ bool LetterButton::is_correct() const {
 void LetterButton::writeLetter() {
     std::string s;
     std::cin>>s;
+    std::cout<<"cined"<<" "<<s<<' '<<s[0];
     letter = s[0];
 //    std::string s0;
 //    s0.push_back(s);
@@ -338,9 +341,9 @@ int ToLevelButton::getNumberOfLevel() const{
     return numberOfLevel;
 }
 void Button::set_all(std::wstring Text, int text_size, sf::Color TextColor,
-             std::string texture_file, PositionState textPosX, PositionState textPosY,
-             sf::Color FillColor, float positionX, float positionY,
-             float sizeX, float sizeY){
+                     std::string texture_file, PositionState textPosX, PositionState textPosY,
+                     sf::Color FillColor, float positionX, float positionY,
+                     float sizeX, float sizeY){
 
     setlocale(LC_ALL, "russian");
     sf::Vector2<float> size(sizeX, sizeY);
@@ -363,4 +366,3 @@ void Button::set_all(std::wstring Text, int text_size, sf::Color TextColor,
 
     setTextPosition(textPosX, textPosY);
 }
-
