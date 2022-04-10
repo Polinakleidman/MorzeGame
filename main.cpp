@@ -6,7 +6,7 @@
 #include<string>
 
 std::vector<bool> ifCorrectAnswer;
-std::vector<std::wstring> PlayerAnswer;
+std::vector<std::wstring> PlayerAnswer = {{L"к", L"а", L"к", L" ", L"д", L".", L"л", L"a", L"?"}};
 
 
 void work_with_menu_window();
@@ -156,12 +156,13 @@ void work_with_level_window(int level, int complexity){
                 GPWindow.close();
                 work_with_Level_List();
             } else if (gameprocess.CheckButton.isPressed()) {
-                GPWindow.close();
-                for(auto x: gameprocess.enterPhrase){
+                for(int i =0;i<gameprocess.enterPhrase.size();++i){
+                    auto x = gameprocess.enterPhrase[i];
                     ifCorrectAnswer.push_back(x.is_correct());
-                    PlayerAnswer.push_back(x.getLetter());
-                    //work_with_check_level(checked_letters, level, compexity);
+                    PlayerAnswer[i] = x.getLetter();
+                    work_with_checked_level(PlayerAnswer, ifCorrectAnswer, level, complexity);
                 }
+                GPWindow.close();
             }else{
                 for(auto& but: gameprocess.enterPhrase){
                     if (but.isPressed() && but.colorChange){
