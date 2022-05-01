@@ -72,7 +72,7 @@ public:
 
 class LetterButton: public Button{
 protected:
-    char letter = ' ';
+    std::wstring letter = L" ";
     std::wstring appropriateLetter = L" ";
     bool isEmpty = true;
 public:
@@ -81,6 +81,7 @@ public:
     void setApproriateLetter(std::wstring);
     void writeLetter();
     void ChangeColor();
+    void set_letter(std::wstring);
     std::wstring getLetter();
 };
 

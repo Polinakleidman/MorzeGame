@@ -272,9 +272,7 @@ LetterButton::LetterButton(){
 
 
 bool LetterButton::is_correct() const {
-    std::string s0;
-    s0.push_back(letter);
-    if (sf::String::fromUtf8(s0.begin(), s0.end()) == appropriateLetter || !colorChange){
+    if (letter == appropriateLetter || !colorChange){
         return true;
     }
     return false;
@@ -288,7 +286,7 @@ void LetterButton::writeLetter() {
 //    std::string s0;
 //    s0.push_back(s);
 //    std::string s0 = "д";
-    sf::Text text0(sf::String::fromUtf8(s.begin(), s.end()), font, 15);
+    sf::Text text0(sf::String::fromUtf8(s.begin(), s.end()), font, 30);
     text0.setFillColor({0, 0, 139, 230});
     setText(text0);
     setTextPosition(middle, middle);
@@ -313,8 +311,14 @@ void LetterButton::ChangeColor(){
 }
 
 std::wstring LetterButton::getLetter(){
-    std::wstring answer = std::to_wstring(letter);
+    std::wstring answer = letter;
+    return answer;
 }
+
+void LetterButton::set_letter(std::wstring s) {
+    letter = s;
+}
+
 
 TransportButton::TransportButton() {
     rectangle.setSize({100, 100});
@@ -340,11 +344,12 @@ int ToLevelButton::getComlexity() const{
 int ToLevelButton::getNumberOfLevel() const{
     return numberOfLevel;
 }
+
+
 void Button::set_all(std::wstring Text, int text_size, sf::Color TextColor,
                      std::string texture_file, PositionState textPosX, PositionState textPosY,
                      sf::Color FillColor, float positionX, float positionY,
                      float sizeX, float sizeY){
-
     setlocale(LC_ALL, "russian");
     sf::Vector2<float> size(sizeX, sizeY);
     setSize(size);

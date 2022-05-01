@@ -104,15 +104,17 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
                         sf::Color::Yellow, 830, 550,
                         250, 150);
     decorate_label_level(Label0, level, complexity);
-    std::vector<std::wstring> phrase = {{L"к", L"а", L"к", L" ", L"д", L".", L"л", L"a", L"?"}};
+    std::vector<std::wstring> phrase = {{L"h", L"o", L"w", L" ", L".", L"r", L"e", L"u", L"?"}};
+    std::vector<std::wstring> real_phrase = {{L"h", L"o", L"w", L" ", L"a", L"r", L"e", L"u", L"?"}};
     int length = givenPhrase.size() * 70 + (givenPhrase.size() - 1) * 10;
     int pass = 600 - length/2;
 
     for (int i = 0; i < givenPhrase.size(); ++i) {
         givenPhrase[i]->colorChange = false;
-        givenPhrase[i]->setApproriateLetter(phrase[i]);
+        givenPhrase[i]->setApproriateLetter(real_phrase[i]);
         decorate_big_button(givenPhrase[i], phrase[i], 35, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 270,
                             70, 70);
+        givenPhrase[i]->setApproriateLetter(real_phrase[i]);
     }
     for (int i = 0; i < givenPhrase.size(); ++i) {
         std::wstring nostring = L"?";
@@ -123,7 +125,9 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
             enterPhrase[i]->colorChange = false;
             decorate_big_button(enterPhrase[i], phrase[i], 35, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 400,
                                 70, 70);
+            enterPhrase[i]->set_letter(real_phrase[i]);
         }
+        enterPhrase[i]->setApproriateLetter(real_phrase[i]);
     }
 
 }
@@ -159,15 +163,25 @@ Alphabet::Alphabet() {
 }
 
 GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<bool> players_mistakes, int cur_level, int cur_complexity){
+    Factory* factory =new GameCheckedFactory();
     level = cur_level;
     complexity = cur_complexity;
+    std::cout<<"!";
+    for(auto t: players_answer){
+        std::wcout<<t<<" ";
+    }
+    std::cout<<"!";
+    std::cout<<2;
     std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
+    std::cout<<4;
     std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(18);
+    std::cout<<3;
     ToLevelListButton = big_buttons[0];
     AgainButton = big_buttons[1];
     std::vector<Label*> labels = factory->create_all_labels();
     Label0 = labels[0];
     NextButton = big_buttons[2];
+    std::cout<<3;
     decorate_big_button(ToLevelListButton, L"К выбору\nуровней", 35, {0, 0, 139, 230},
                         sf::Color::Yellow, 500, 550,
                         250, 150);
@@ -178,8 +192,8 @@ GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<b
             sf::Color::Yellow, 830, 550,
             250, 150);
     decorate_label_level(Label0, level, complexity);
-
-    std::vector<std::wstring> phrase = {{L"к", L"а", L"к", L" ", L"д", L".", L"л", L"a", L"?"}};
+    std::cout<<3;
+    std::vector<std::wstring> phrase = {{L"h", L"o", L"w", L" ", L".", L"r", L"e", L"u", L"?"}};
     for(int i =0;i<9;++i){
         givenPhrase.push_back(lettersbut[i]);
         enterPhrase.push_back(lettersbut[i+9]);
