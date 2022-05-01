@@ -15,7 +15,9 @@ void work_with_checked_level(std::vector<std::wstring>& playersAnswer, std::vect
 void work_with_Level_List();
 
 void work_with_Level_List(){
+    std::cout<<2;
     AllLevels allLevels;
+    std::cout<<2;
     //Alphabet alphabet;
     sf::RenderWindow allLevelsWindow;
     allLevels.render(allLevelsWindow);
