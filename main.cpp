@@ -30,26 +30,26 @@ void work_with_Level_List(){
                 allLevelsWindow.close();
             }
 
-            if (allLevels.MenuButton.isPressed()) {
+            if (allLevels.MenuButton->isPressed()) {
                 allLevelsWindow.close();
                 work_with_menu_window();
             }
 
 
             for (auto& a:allLevels.LevelButtons){
-                if (a.isPressed()){
+                if (a->isPressed()){
                     allLevelsWindow.close();
-                    work_with_level_window(a.getNumberOfLevel()+1, a.getComlexity()+1);
-                    std::cout<<a.getNumberOfLevel()<<" "<<a.getComlexity();
+                    work_with_level_window(a->getNumberOfLevel()+1, a->getComlexity()+1);
+                    std::cout<<a->getNumberOfLevel()<<" "<<a->getComlexity();
                 }
             }
 
             allLevelsWindow.clear(sf::Color::White);
 
             if(!flag){
-                allLevels.MenuButton.draw(allLevelsWindow);
+                allLevels.MenuButton->draw(allLevelsWindow);
                 for (auto& a: allLevels.LevelButtons){
-                    a.draw(allLevelsWindow);
+                    a->draw(allLevelsWindow);
                 }
             }
             allLevelsWindow.display();
@@ -74,7 +74,7 @@ void work_with_Morze_window(){
                 AlphabetWindow.close();
             }
 
-            if (alphabet.MenuButton.isPressed()) {
+            if (alphabet.MenuButton->isPressed()) {
                 AlphabetWindow.close();
                 work_with_menu_window();
             }
@@ -82,8 +82,8 @@ void work_with_Morze_window(){
             AlphabetWindow.clear(sf::Color::White);
 
             if(!flag){
-                alphabet.MenuButton.draw(AlphabetWindow);
-                alphabet.AlphabetButton.draw(AlphabetWindow);
+                alphabet.MenuButton->draw(AlphabetWindow);
+                alphabet.AlphabetButton->draw(AlphabetWindow);
             }
             AlphabetWindow.display();
         }
@@ -93,6 +93,7 @@ void work_with_Morze_window(){
 void work_with_menu_window(){
     setlocale(LC_ALL, "russian");
     Menu menu;
+    std::cout<<1;
     sf::RenderWindow MenuWindow;
     menu.render(MenuWindow);
     std::cout<<"ok1";
@@ -110,10 +111,10 @@ void work_with_menu_window(){
                 MenuWindow.close();
             }
 
-            if (menu.WatchMorzeButton.isPressed()) {
+            if (menu.WatchMorzeButton->isPressed()) {
                 MenuWindow.close();
                 work_with_Morze_window();
-            } else if (menu.ToLevelListButton.isPressed()) {
+            } else if (menu.ToLevelListButton->isPressed()) {
                 MenuWindow.close();
                 work_with_Level_List();
             }
@@ -122,10 +123,10 @@ void work_with_menu_window(){
         MenuWindow.clear(sf::Color::White);
 
         if(!flag){
-            menu.WatchMorzeButton.draw(MenuWindow);
-            menu.ToLevelListButton.draw(MenuWindow);
-            menu.Label0.draw(MenuWindow);
-            menu.LabelMorze.draw(MenuWindow);
+            menu.WatchMorzeButton->draw(MenuWindow);
+            menu.ToLevelListButton->draw(MenuWindow);
+            menu.Label0->draw(MenuWindow);
+            menu.LabelMorze->draw(MenuWindow);
         }
         MenuWindow.display();
     }
@@ -135,6 +136,7 @@ void work_with_menu_window(){
 void work_with_level_window(int level, int complexity){
 //    setlocale(LC_ALL, "russian");
     GameProcess gameprocess(level, complexity);
+    std::cout<<1;
     sf::RenderWindow GPWindow;
     gameprocess.render(GPWindow);
     std::cout<<"ok1";
@@ -152,22 +154,22 @@ void work_with_level_window(int level, int complexity){
                 GPWindow.close();
             }
 
-            if (gameprocess.ToLevelListButton.isPressed()) {
+            if (gameprocess.ToLevelListButton->isPressed()) {
                 GPWindow.close();
                 work_with_Level_List();
-            } else if (gameprocess.CheckButton.isPressed()) {
+            } else if (gameprocess.CheckButton->isPressed()) {
                 for(int i =0;i<gameprocess.enterPhrase.size();++i){
                     auto x = gameprocess.enterPhrase[i];
-                    ifCorrectAnswer.push_back(x.is_correct());
-                    PlayerAnswer[i] = x.getLetter();
+                    ifCorrectAnswer.push_back(x->is_correct());
+                    PlayerAnswer[i] = x->getLetter();
                     work_with_checked_level(PlayerAnswer, ifCorrectAnswer, level, complexity);
                 }
                 GPWindow.close();
             }else{
                 for(auto& but: gameprocess.enterPhrase){
-                    if (but.isPressed() && but.colorChange){
+                    if (but->isPressed() && but->colorChange){
                         std::cout<<"WOW";
-                        but.writeLetter();
+                        but->writeLetter();
 
                     }
                 }
@@ -178,14 +180,14 @@ void work_with_level_window(int level, int complexity){
         GPWindow.clear(sf::Color::White);
 
         if(!flag){
-            gameprocess.CheckButton.draw(GPWindow);
-            gameprocess.ToLevelListButton.draw(GPWindow);
-            gameprocess.Label0.draw(GPWindow);
+            gameprocess.CheckButton->draw(GPWindow);
+            gameprocess.ToLevelListButton->draw(GPWindow);
+            gameprocess.Label0->draw(GPWindow);
             for(auto& but: gameprocess.givenPhrase){
-                but.draw(GPWindow);
+                but->draw(GPWindow);
             }
             for(auto& but: gameprocess.enterPhrase){
-                but.draw(GPWindow);
+                but->draw(GPWindow);
             }
         }
         GPWindow.display();
@@ -210,10 +212,10 @@ void work_with_checked_level(std::vector<std::wstring>& playersAnswer, std::vect
                 GPWindow.close();
             }
 
-            if (gamechecked.ToLevelListButton.isPressed()) {
+            if (gamechecked.ToLevelListButton->isPressed()) {
                 GPWindow.close();
                 work_with_Level_List();
-            } else if (gamechecked.NextButton.isPressed()) {
+            } else if (gamechecked.NextButton->isPressed()) {
                 GPWindow.close();
                 if(level < 5){
                     work_with_level_window(level + 1, complexity);
@@ -222,7 +224,7 @@ void work_with_checked_level(std::vector<std::wstring>& playersAnswer, std::vect
                 } else {
                     work_with_Level_List();
                 }
-            } else if(gamechecked.AgainButton.isPressed()){
+            } else if(gamechecked.AgainButton->isPressed()){
                 GPWindow.close();
                 work_with_level_window(level, complexity);
             }
@@ -231,15 +233,15 @@ void work_with_checked_level(std::vector<std::wstring>& playersAnswer, std::vect
         GPWindow.clear(sf::Color::White);
 
         if(!flag){
-            gamechecked.AgainButton.draw(GPWindow);
-            gamechecked.ToLevelListButton.draw(GPWindow);
-            gamechecked.NextButton.draw(GPWindow);
-            gamechecked.Label0.draw(GPWindow);
+            gamechecked.AgainButton->draw(GPWindow);
+            gamechecked.ToLevelListButton->draw(GPWindow);
+            gamechecked.NextButton->draw(GPWindow);
+            gamechecked.Label0->draw(GPWindow);
             for(auto but: gamechecked.givenPhrase){
-                but.draw(GPWindow);
+                but->draw(GPWindow);
             }
             for(auto but: gamechecked.enterPhrase){
-                but.draw(GPWindow);
+                but->draw(GPWindow);
             }
         }
         GPWindow.display();
