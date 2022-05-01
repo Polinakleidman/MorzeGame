@@ -62,7 +62,7 @@ std::vector<Button*> GameProcessFactory::create_all_big_buttons() {
 std::vector<Button*> GameProcessFactory::create_all_small_buttons(size_t number) {
     std::vector<Button*> all_buttons;
     for(size_t i = 0; i < number; ++i){
-        all_buttons.push_back(new LetterButton);
+        all_buttons.push_back(new LetterButton());
     }
     return all_buttons;
 }

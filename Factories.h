@@ -3,7 +3,7 @@
 #include "Buttons.h"
 #include "Label.h"
 #include<string>
-#include "Windows.h"
+//#include "Windows.h"
 
 class Factory{
 public:
@@ -35,6 +35,7 @@ public:
     std::vector<Button*> create_all_big_buttons() override;
     std::vector<Button*> create_all_small_buttons(size_t number) override;
     std::vector<Label*> create_all_labels() override;
+
 };
 
 class GameProcessFactory: public Factory{
