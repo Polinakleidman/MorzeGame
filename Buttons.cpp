@@ -285,7 +285,7 @@ void LetterButton::writeLetter() {
     for (std::wstring::iterator it = s.begin(); it != s.end(); ++it)
         *it = towlower(*it);
     letter = s;
-    sf::Text text0(s, font, 30);
+    sf::Text text0(letter, font, 21);
     text0.setFillColor({0, 0, 139, 230});
     setText(text0);
     setTextPosition(middle, middle);
