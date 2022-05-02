@@ -11,7 +11,6 @@ public:
     virtual std::vector<LetterButton*> create_all_letter_buttons(size_t number) = 0;
     virtual std::vector<ToLevelButton*> create_all_tolevellist_buttons(size_t number) = 0;
     virtual std::vector<Label*> create_all_labels() = 0;
-
 };
 
 
@@ -40,7 +39,6 @@ public:
     std::vector<LetterButton*> create_all_letter_buttons(size_t number) override;
     std::vector<ToLevelButton*> create_all_tolevellist_buttons(size_t number) override;
     std::vector<Label*> create_all_labels() override;
-
 };
 
 class GameProcessFactory: public Factory{
@@ -59,5 +57,4 @@ public:
     std::vector<LetterButton*> create_all_letter_buttons(size_t number) override;
     std::vector<ToLevelButton*> create_all_tolevellist_buttons(size_t number) override;
     std::vector<Label*> create_all_labels() override;
-
 };
