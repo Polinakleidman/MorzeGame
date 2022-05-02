@@ -1,3 +1,4 @@
+
 #include <vector>
 #include <string>
 #include <iostream>
@@ -15,3 +16,4 @@ std::vector<std::vector<std::wstring>> phrases2 = {
         {{L"B", L"e", L" ", L"y", L"o", L"u", L"r", L" ", L"b", L"e", L"s", L"t", L" ", L"v", L"e", L"r", L"s", L"i", L"o", L"n"}},
         {{L"B", L"e", L" ", L"y", L"o", L"u", L".-.", L" ", L"-...", L"e", L"...", L"t", L" ", L"v", L".", L"r", L"s", L"..", L"o", L"n"}},
 };
+

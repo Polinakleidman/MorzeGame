@@ -356,9 +356,9 @@ void Button::set_all(std::wstring Text, int text_size, sf::Color TextColor,
     ButtonText.setFillColor(TextColor);
     setText(ButtonText);
 
-    sf::Texture Texture;
-    Texture.loadFromFile(texture_file);
-    setTexture(Texture);
+//    sf::Texture Texture;
+//    Texture.loadFromFile(texture_file);
+//    setTexture(Texture);
 
 
     setTextPosition(textPosX, textPosY);
