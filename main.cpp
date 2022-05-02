@@ -1,12 +1,14 @@
 #pragma once
 #include <iostream>
-#include "Windows.h"
+#include "Windows/Windows.h"
 #include "Label.h"
 #include "SFML/Graphics.hpp"
+#include "Windows/MenuWindow.h"
+#include "Windows/AlphabetWindow.h"
+#include "Windows/AllLevelsWindow.h"
+#include "Windows/GameWindows.h"
 #include<string>
 
-//std::vector<bool> ifCorrectAnswer;
-//std::vector<char> PlayerAnswer = {'h', 'o', 'w', ' ', 'a', 'r', 'e', 'u', '?'};
 
 
 void work_with_menu_window();
@@ -18,7 +20,6 @@ void work_with_Level_List(){
     std::cout<<2;
     AllLevels allLevels;
     std::cout<<2;
-    //Alphabet alphabet;
     sf::RenderWindow allLevelsWindow;
     allLevels.render(allLevelsWindow);
     bool flag = false;
