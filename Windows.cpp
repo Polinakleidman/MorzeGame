@@ -3,11 +3,14 @@
 #include "SFML/graphics.hpp"
 #include <iostream>
 #include <vector>
+#include "Levels/Complexity1.cpp"
 #include "Levels/Complexity2.cpp"
+#include "Levels/Complexity3.cpp"
 #include "Windows.h"
 #include "SFML/graphics.hpp"
 #include<string>
 #include<vector>
+#include<fstream>
 
 void Renderable::decorate_big_button(Button* buttton, std::wstring Text, int text_size, sf::Color TextColor,
                                      sf::Color FillColor, float positionX, float positionY,
@@ -40,7 +43,7 @@ void Renderable::decorate_label_level(Label* label, int level, int complexity){
 
 void Renderable::decorate_photo_button(Button* AlphabetPhoto){
     sf::Texture texture;
-    texture.loadFromFile("../Alphabet.jpg");
+    texture.loadFromFile("../Alphabet.png");
     AlphabetPhoto->setTexture(texture);
     AlphabetPhoto->setPosition({150, 70});
     AlphabetPhoto->setSize({900, 520});
@@ -90,8 +93,18 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     complexity = cur_complexity;
 //    std::vector<std::wstring> phrase = get_morze_phrase(level, complexity);
     //    std::vector<std::wstring> real_phrase = get_real_phrase(level, complexity);
-    std::vector<std::wstring> phrase = phrases2[(level - 1)*2+1];//{{L"H", L"o", L"w", L" ", L"---.", L"r", L"e", L"u", L"?"}};
-    std::vector<std::wstring> real_phrase = phrases2[(level - 1)*2];//{{L"H", L"o", L"w", L" ", L"a", L"r", L"e", L"u", L"?"}};
+    std::vector<std::wstring> phrase;
+    std::vector<std::wstring> real_phrase;
+    if(complexity == 1){
+        phrase = phrases1[(level - 1)*2+1];
+        real_phrase = phrases1[(level - 1)*2];
+    } else if (complexity == 2) {
+        phrase = phrases2[(level - 1) * 2 + 1];
+        real_phrase = phrases2[(level - 1) * 2];
+    } else if (complexity == 3) {
+        phrase = phrases3[(level - 1) * 2 + 1];
+        real_phrase = phrases3[(level - 1) * 2];
+    }
     std::cout<<"#";
     std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
     std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
@@ -103,6 +116,7 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     ToLevelListButton = big_buttons[0];
     CheckButton = big_buttons[1];
     Label0 = all_labels[0];
+    std::cout<<"9";
     decorate_big_button(ToLevelListButton, L"Вернуться\nк выбору\nуровней", 30, {0, 0, 139, 230},
                         sf::Color::Yellow, 120, 550,
                         250, 150);
@@ -177,8 +191,18 @@ GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<b
 //    }
 //    std::cout<<"!";
     std::cout<<2;
-    std::vector<std::wstring> phrase = phrases2[(level - 1)*2+1];//{{L"H", L"o", L"w", L" ", L"---.", L"r", L"e", L"u", L"?"}};
-    std::vector<std::wstring> real_phrase = phrases2[(level - 1)*2];
+    std::vector<std::wstring> phrase;
+    std::vector<std::wstring> real_phrase;
+    if(complexity == 1){
+        phrase = phrases1[(level - 1)*2+1];
+        real_phrase = phrases1[(level - 1)*2];
+    } else if (complexity == 2) {
+        phrase = phrases2[(level - 1) * 2 + 1];
+        real_phrase = phrases2[(level - 1) * 2];
+    } else if (complexity == 3) {
+        phrase = phrases3[(level - 1) * 2 + 1];
+        real_phrase = phrases3[(level - 1) * 2];
+    }
     std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
     std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
     ToLevelListButton = big_buttons[0];
