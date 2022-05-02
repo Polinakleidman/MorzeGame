@@ -70,9 +70,9 @@ Menu::Menu() {
     WatchMorzeButton = big_buttons[1];
     Label0 = labels[0];
     LabelMorze = labels[1];
-    decorate_big_button(ToLevelListButton, L"Выбор\nУровней", 35, {0, 0, 139, 230}, sf::Color::Yellow, 800, 550,
+    decorate_big_button(ToLevelListButton, L"Выбор\nУровней", 30, {0, 0, 139, 230}, sf::Color::Yellow, 800, 550,
                         250, 150);
-    decorate_big_button(WatchMorzeButton, L"Открыть\nазбуку\nМорзе", 35, sf::Color::Yellow,
+    decorate_big_button(WatchMorzeButton, L"Открыть\nазбуку\nМорзе", 30, sf::Color::Yellow,
                         sf::Color::Magenta, 120, 550,
                         250, 150);
     decorate_label(LabelMorze, L"-- --- .-. --.. .   --. .- -. .", 100, sf::Color{0x170603ff},
@@ -87,9 +87,14 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     Factory* factory = new GameProcessFactory();
     level = cur_level;
     complexity = cur_complexity;
+//    std::vector<std::wstring> phrase = get_morze_phrase(level, complexity);
+    //    std::vector<std::wstring> real_phrase = get_real_phrase(level, complexity);
+    std::vector<std::wstring> phrase = {{L"H", L"o", L"w", L" ", L"---.", L"r", L"e", L"u", L"?"}};
+    std::vector<std::wstring> real_phrase = {{L"H", L"o", L"w", L" ", L"a", L"r", L"e", L"u", L"?"}};
+    std::cout<<"#";
     std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
-    std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(18);
-    for(int i =0;i<9;++i){
+    std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
+    for(int i =0;i<real_phrase.size();++i){
         enterPhrase.push_back(lettersbut[i]);
         givenPhrase.push_back(lettersbut[i+9]);
     }
@@ -97,33 +102,32 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
     ToLevelListButton = big_buttons[0];
     CheckButton = big_buttons[1];
     Label0 = all_labels[0];
-    decorate_big_button(ToLevelListButton, L"Вернуться\nк выбору\nуровней", 35, {0, 0, 139, 230},
+    decorate_big_button(ToLevelListButton, L"Вернуться\nк выбору\nуровней", 30, {0, 0, 139, 230},
                         sf::Color::Yellow, 120, 550,
                         250, 150);
-    decorate_big_button(CheckButton, L"Проверить", 35, {0, 0, 139, 230},
+    decorate_big_button(CheckButton, L"Проверить", 30, {0, 0, 139, 230},
                         sf::Color::Yellow, 830, 550,
                         250, 150);
     decorate_label_level(Label0, level, complexity);
-    std::vector<std::wstring> phrase = {{L"h", L"o", L"w", L" ", L".", L"r", L"e", L"u", L"?"}};
-    std::vector<std::wstring> real_phrase = {{L"h", L"o", L"w", L" ", L"a", L"r", L"e", L"u", L"?"}};
     int length = givenPhrase.size() * 70 + (givenPhrase.size() - 1) * 10;
     int pass = 600 - length/2;
 
     for (int i = 0; i < givenPhrase.size(); ++i) {
         givenPhrase[i]->colorChange = false;
         givenPhrase[i]->setApproriateLetter(real_phrase[i]);
-        decorate_big_button(givenPhrase[i], phrase[i], 35, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 270,
+        decorate_big_button(givenPhrase[i], phrase[i], 30, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 270,
                             70, 70);
+
         givenPhrase[i]->setApproriateLetter(real_phrase[i]);
     }
     for (int i = 0; i < givenPhrase.size(); ++i) {
         std::wstring nostring = L"?";
         if (phrase[i][0] == '.' || phrase[i][0] == '-') {
-            decorate_big_button(enterPhrase[i], L"?", 35, {0, 0, 139, 230},sf::Color::Cyan, pass + i * 80, 400,
+            decorate_big_button(enterPhrase[i], L"?", 30, {0, 0, 139, 230},sf::Color::Cyan, pass + i * 80, 400,
                                 70, 70);
         } else {
             enterPhrase[i]->colorChange = false;
-            decorate_big_button(enterPhrase[i], phrase[i], 35, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 400,
+            decorate_big_button(enterPhrase[i], phrase[i], 30, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 400,
                                 70, 70);
             enterPhrase[i]->set_letter(real_phrase[i]);
         }
@@ -140,7 +144,7 @@ AllLevels::AllLevels(){
     LevelButtons = factory->create_all_tolevellist_buttons(15);
     std::cout<<'*';
     MenuButton = big_buttons[0];
-    decorate_big_button(MenuButton, L"Вернуться\nк меню", 35, {0, 0, 139, 230}, sf::Color::Green, 480, 650,
+    decorate_big_button(MenuButton, L"Вернуться\nк меню", 30, {0, 0, 139, 230}, sf::Color::Green, 480, 650,
                         240, 100);
     std::cout<<'*';
     for(int i =0;i<15;++i){
@@ -155,7 +159,7 @@ Alphabet::Alphabet() {
     std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
     MenuButton = big_buttons[0];
     AlphabetButton =big_buttons[1];
-    decorate_big_button(MenuButton, L"Вернуться\nк меню", 35, {100, 200, 40, 230},sf::Color::Blue, 480, 650,
+    decorate_big_button(MenuButton, L"Вернуться\nк меню", 30, {100, 200, 40, 230},sf::Color::Blue, 480, 650,
                         240, 100);
     decorate_photo_button(AlphabetButton);
     AlphabetButton->colorChange = false;
@@ -182,18 +186,18 @@ GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<b
     Label0 = labels[0];
     NextButton = big_buttons[2];
     std::cout<<3;
-    decorate_big_button(ToLevelListButton, L"К выбору\nуровней", 35, {0, 0, 139, 230},
+    decorate_big_button(ToLevelListButton, L"К выбору\nуровней", 30, {0, 0, 139, 230},
                         sf::Color::Yellow, 500, 550,
                         250, 150);
-    decorate_big_button(AgainButton, L"Заново", 35, {0, 0, 139, 230},
+    decorate_big_button(AgainButton, L"Заново", 30, {0, 0, 139, 230},
                         sf::Color::Yellow, 120, 550,
                         250, 150);
-    decorate_big_button(NextButton, L"Следующий\nуровень", 35, {0, 0, 139, 230},
+    decorate_big_button(NextButton, L"Следующий\nуровень", 30, {0, 0, 139, 230},
             sf::Color::Yellow, 830, 550,
             250, 150);
     decorate_label_level(Label0, level, complexity);
     std::cout<<3;
-    std::vector<std::wstring> phrase = {{L"h", L"o", L"w", L" ", L".", L"r", L"e", L"u", L"?"}};
+    std::vector<std::wstring> phrase = {{L"H", L"o", L"w", L" ", L"---.", L"r", L"e", L"u", L"?"}};
     for(int i =0;i<9;++i){
         givenPhrase.push_back(lettersbut[i]);
         enterPhrase.push_back(lettersbut[i+9]);
@@ -202,7 +206,7 @@ GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<b
     int length = givenPhrase.size() * 70 + (givenPhrase.size() - 1) * 10;
     int pass = 600 - length/2;
     for (int i = 0; i < givenPhrase.size(); ++i) {
-        decorate_big_button(givenPhrase[i], phrase[i], 35, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 270,
+        decorate_big_button(givenPhrase[i], phrase[i], 30, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 270,
                             70, 70);
         givenPhrase[i]->colorChange = false;
     }
@@ -210,7 +214,7 @@ GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<b
     for (int i = 0; i < givenPhrase.size(); ++i) {
         enterPhrase[i]->colorChange = false;
         std::wstring nostring = L" ";
-        decorate_big_button(enterPhrase[i], players_answer[i], 35, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 400,
+        decorate_big_button(enterPhrase[i], players_answer[i], 30, {0, 0, 139, 230},sf::Color::Yellow, pass + i * 80, 400,
                             70, 70);
         if(!players_mistakes[i]){
             enterPhrase[i]->setFillColor(sf::Color::Red);

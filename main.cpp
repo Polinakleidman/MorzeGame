@@ -137,16 +137,12 @@ void work_with_menu_window(){
 void work_with_level_window(int level, int complexity){
 //    setlocale(LC_ALL, "russian");
     GameProcess gameprocess(level, complexity);
-    std::cout<<1;
+    std::cout<<"*";
     sf::RenderWindow GPWindow;
     gameprocess.render(GPWindow);
-    std::cout<<"ok1";
-    std::cout<<"ok2";
-    std::cout<<"ok";
-    const std::wstring Text1 = L"a";
     bool flag = false;
     std::vector<bool> ifCorrectAnswer;
-    std::vector<std::wstring> PlayerAnswer = {{L"h", L"o", L"w", L" ", L".", L"r", L"e", L"u", L"?"}};
+    std::vector<std::wstring> PlayerAnswer(9);// = {{L" ", L" ", L" ", L" ", L" ", L" ", L" ", L" ", L" "}};
     while (GPWindow.isOpen())
     {
         sf::Event event;
@@ -162,10 +158,7 @@ void work_with_level_window(int level, int complexity){
                 for(int i =0;i<gameprocess.enterPhrase.size();++i){
                     auto x = gameprocess.enterPhrase[i];
                     ifCorrectAnswer.push_back(x->is_correct());
-                    std::cout<<"pop";
                     PlayerAnswer[i] = x->getLetter();
-                    std::cout<<"it";
-                    std::cout<<"finish";
                 }
                 GPWindow.close();
                 work_with_checked_level(PlayerAnswer, ifCorrectAnswer, level, complexity);

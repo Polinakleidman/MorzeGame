@@ -279,14 +279,13 @@ bool LetterButton::is_correct() const {
 }
 
 void LetterButton::writeLetter() {
-    std::string s;
-    std::cin>>s;
-    std::cout<<"cined"<<" "<<s<<' '<<s[0];
-    letter = s[0];
-//    std::string s0;
-//    s0.push_back(s);
-//    std::string s0 = "д";
-    sf::Text text0(sf::String::fromUtf8(s.begin(), s.end()), font, 30);
+    std::wstring s;
+    std::wcin>>s;
+    //std::wcout<<"cined"<<" "<<s<<' '<<s[0];
+    for (std::wstring::iterator it = s.begin(); it != s.end(); ++it)
+        *it = towlower(*it);
+    letter = s;
+    sf::Text text0(s, font, 30);
     text0.setFillColor({0, 0, 139, 230});
     setText(text0);
     setTextPosition(middle, middle);
