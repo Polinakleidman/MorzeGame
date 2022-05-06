@@ -79,7 +79,7 @@ public:
     explicit LetterButton();
     bool is_correct() const;
     void setApproriateLetter(std::wstring);
-    void writeLetter();
+    void writeLetter(std::wstring);
     void ChangeColor();
     void set_letter(std::wstring);
     std::wstring getLetter();

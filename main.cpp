@@ -136,13 +136,15 @@ void work_with_menu_window(){
 
 
 void work_with_level_window(int level, int complexity){
-    setlocale(LC_ALL, "russian");
+//    setlocale(LC_ALL, "russian");
     GameProcess gameprocess(level, complexity);
     std::cout<<"*";
     sf::RenderWindow GPWindow;
     gameprocess.render(GPWindow);
     bool flag = false;
     std::vector<bool> ifCorrectAnswer;
+    int curr = -1;
+    std::wstring line;
     std::vector<std::wstring> PlayerAnswer(100);// = {{L" ", L" ", L" ", L" ", L" ", L" ", L" ", L" ", L" "}};
     while (GPWindow.isOpen())
     {
@@ -151,6 +153,24 @@ void work_with_level_window(int level, int complexity){
         while (GPWindow.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
                 GPWindow.close();
+            }
+            if (event.type==sf::Event::TextEntered && curr!=-1){
+                switch (event.text.unicode) {
+                    case 0xD:
+                        gameprocess.enterPhrase[curr]->writeLetter(line);
+                        line = L"";
+                        curr = -1;
+                        break;
+                    default:
+                    {
+                        line += static_cast<wchar_t> (event.text.unicode);
+                        gameprocess.enterPhrase[curr]->writeLetter(line);
+                        std::wcout<<line<<curr;
+                        line = L"";
+                        curr = -1;
+                        break;
+                    }
+                }
             }
             if (gameprocess.ToLevelListButton->isPressed()) {
                 GPWindow.close();
@@ -167,9 +187,8 @@ void work_with_level_window(int level, int complexity){
                 for(int i =0;i<gameprocess.enterPhrase.size();++i){
 
                     if (gameprocess.enterPhrase[i]->isPressed() && gameprocess.enterPhrase[i]->colorChange){
-                        std::cout<<"WOW";
-                        gameprocess.enterPhrase[i]->writeLetter();
 
+                        curr = i;
                     }
                 }
 

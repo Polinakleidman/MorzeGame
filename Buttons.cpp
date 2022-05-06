@@ -97,7 +97,7 @@ bool Button::isPressed() {
 
     if (!isInsideRect) return 0;
 
-    std::cout<<"pressed";
+    //std::cout<<"pressed";
     return 1;
 }
 
@@ -278,13 +278,14 @@ bool LetterButton::is_correct() const {
     return false;
 }
 
-void LetterButton::writeLetter() {
-    std::wstring s;
-    std::wcin>>s;
+void LetterButton::writeLetter(std::wstring s) {
+//    std::wstring s;
+//    std::wcin>>s;
     //std::wcout<<"cined"<<" "<<s<<' '<<s[0];
     for (std::wstring::iterator it = s.begin(); it != s.end(); ++it)
         *it = towlower(*it);
     letter = s;
+    setlocale(LC_ALL, "russian");
     sf::Text text0(letter, font, 21);
     text0.setFillColor({0, 0, 139, 230});
     setText(text0);
