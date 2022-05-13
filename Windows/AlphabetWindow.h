@@ -4,7 +4,7 @@
 
 class Alphabet: public Renderable{
 private:
-    MorzeFactory* factory;
+    Factory* factory;
 public:
     Button* MenuButton;
     Button* AlphabetButton;

@@ -5,7 +5,7 @@
 
 class GameProcess: public Renderable{
 private:
-    GameProcessFactory* factory;
+    Factory* factory;
 public:
     int level;
     int complexity;
