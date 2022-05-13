@@ -371,3 +371,22 @@ void Button::set_all(std::wstring Text, int text_size, sf::Color TextColor,
 
     setTextPosition(textPosX, textPosY);
 }
+
+int Button::getComlexity() const{
+    return 0;
+};
+int Button::getNumberOfLevel() const{
+    return 0;
+};
+void Button::setComplexity(int){};
+void Button::setNumberOfLevel(int){};
+bool Button::is_correct() const{
+    return false;
+};
+void Button::setApproriateLetter(std::wstring){};
+void Button::writeLetter(std::wstring){};
+void Button::ChangeColor(){};
+void Button::set_letter(std::wstring){};
+std::wstring Button::getLetter(){
+    return L"a";
+};

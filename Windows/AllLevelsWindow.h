@@ -6,7 +6,7 @@ class AllLevels: public Renderable{
 private:
     Factory* factory;
 public:
-    std::vector<ToLevelButton*> LevelButtons;
+    std::vector<Button*> LevelButtons;
     Button* MenuButton;
 public:
     AllLevels();

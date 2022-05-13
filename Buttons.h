@@ -48,6 +48,16 @@ public:
     sf::Vector2f getScale();
     sf::Vector2f getSize();
     sf::Vector2f getPosition();
+    virtual int getComlexity() const;
+    virtual int getNumberOfLevel() const;
+    virtual void setComplexity(int);
+    virtual void setNumberOfLevel(int);
+    virtual bool is_correct() const;
+    virtual void setApproriateLetter(std::wstring);
+    virtual void writeLetter(std::wstring);
+    virtual void ChangeColor();
+    virtual void set_letter(std::wstring);
+    virtual std::wstring getLetter();
 };
 
 class TransportButton : public Button {
@@ -64,10 +74,10 @@ protected:
     int numberOfLevel;
 public:
     ToLevelButton();
-    int getComlexity() const;
-    int getNumberOfLevel() const;
-    void setComplexity(int);
-    void setNumberOfLevel(int);
+    int getComlexity() const override;
+    int getNumberOfLevel() const override;
+    void setComplexity(int) override;
+    void setNumberOfLevel(int) override;
 };
 
 class LetterButton: public Button{
@@ -77,12 +87,12 @@ protected:
     bool isEmpty = true;
 public:
     explicit LetterButton();
-    bool is_correct() const;
-    void setApproriateLetter(std::wstring);
-    void writeLetter(std::wstring);
-    void ChangeColor();
-    void set_letter(std::wstring);
-    std::wstring getLetter();
+    bool is_correct() const override;
+    void setApproriateLetter(std::wstring) override;
+    void writeLetter(std::wstring) override;
+    void ChangeColor() override;
+    void set_letter(std::wstring) override;
+    std::wstring getLetter() override;
 };
 
 

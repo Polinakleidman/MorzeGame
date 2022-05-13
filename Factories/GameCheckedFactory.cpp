@@ -1,27 +1,27 @@
 #pragma once
 #include "GameCheckedFactory.h"
 
-std::vector<TransportButton*> GameCheckedFactory::create_all_transport_buttons() {
-    TransportButton* Again = new TransportButton();
-    TransportButton* Next = new TransportButton();
-    TransportButton* ToList = new TransportButton();
-    std::vector<TransportButton*> all_buttons;
+std::vector<Button*> GameCheckedFactory::create_all_transport_buttons() {
+    Button* Again = new TransportButton();
+    Button* Next = new TransportButton();
+    Button* ToList = new TransportButton();
+    std::vector<Button*> all_buttons;
     all_buttons.push_back(Again);
     all_buttons.push_back(Next);
     all_buttons.push_back(ToList);
     return all_buttons;
 }
 
-std::vector<LetterButton *> GameCheckedFactory::create_all_letter_buttons(size_t number) {
-    std::vector<LetterButton*> all_buttons;
+std::vector<Button *> GameCheckedFactory::create_all_letter_buttons(size_t number) {
+    std::vector<Button*> all_buttons;
     for(int i = 0; i < number; ++i){
         all_buttons.push_back(new LetterButton());
     }
     return all_buttons;
 }
 
-std::vector<ToLevelButton *> GameCheckedFactory::create_all_tolevellist_buttons(size_t number) {
-    std::vector<ToLevelButton*> all_buttons;
+std::vector<Button *> GameCheckedFactory::create_all_tolevellist_buttons(size_t number) {
+    std::vector<Button*> all_buttons;
     return all_buttons;
 }
 

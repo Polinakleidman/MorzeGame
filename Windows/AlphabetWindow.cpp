@@ -7,7 +7,7 @@ void Alphabet::render(sf::Window& Window){
 
 Alphabet::Alphabet() {
     factory = new MorzeFactory();
-    std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
+    std::vector<Button*> big_buttons = factory->create_all_transport_buttons();
     MenuButton = big_buttons[0];
     AlphabetButton =big_buttons[1];
     decorate_big_button(MenuButton, L"Вернуться\nк меню", 30, {100, 200, 40, 230},sf::Color::Blue, 480, 650,

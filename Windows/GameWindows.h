@@ -13,8 +13,8 @@ public:
     Label* Label0;
     Button* CheckButton;
     Button* ToLevelListButton;
-    std::vector<LetterButton*> givenPhrase;
-    std::vector<LetterButton*> enterPhrase;
+    std::vector<Button*> givenPhrase;
+    std::vector<Button*> enterPhrase;
 public:
     GameProcess(int cur_level, int cur_complexity);
     void render(sf::Window& window) override;
@@ -29,8 +29,8 @@ public:
     Button* AgainButton;
     Button* NextButton;
     Button* ToLevelListButton;
-    std::vector<LetterButton*> givenPhrase;
-    std::vector<LetterButton*> enterPhrase;
+    std::vector<Button*> givenPhrase;
+    std::vector<Button*> enterPhrase;
     Label* Label0;
 public:
     GameChecked(std::vector<std::wstring> players_answer, std::vector<bool> players_mistakes, int cur_level, int cur_complexity);
