@@ -25,8 +25,8 @@ GameProcess::GameProcess(int cur_level, int cur_complexity) {
         real_phrase = phrases3[(level - 1) * 2];
     }
     std::cout<<"#";
-    std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
-    std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
+    std::vector<Button*> big_buttons = factory->create_all_transport_buttons();
+    std::vector<Button*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
     for(int i =0;i<real_phrase.size();++i){
         enterPhrase.push_back(lettersbut[i]);
         givenPhrase.push_back(lettersbut[i+ real_phrase.size()]);
@@ -89,8 +89,8 @@ GameChecked::GameChecked(std::vector<std::wstring> players_answer, std::vector<b
         phrase = phrases3[(level - 1) * 2 + 1];
         real_phrase = phrases3[(level - 1) * 2];
     }
-    std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
-    std::vector<LetterButton*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
+    std::vector<Button*> big_buttons = factory->create_all_transport_buttons();
+    std::vector<Button*> lettersbut =  factory->create_all_letter_buttons(real_phrase.size()*2);
     ToLevelListButton = big_buttons[0];
     AgainButton = big_buttons[1];
     std::vector<Label*> labels = factory->create_all_labels();

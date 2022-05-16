@@ -7,7 +7,7 @@ void Menu::render(sf::Window& Window) {
 
 Menu::Menu() {
     factory = new MenuFactory();
-    std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
+    std::vector<Button*> big_buttons = factory->create_all_transport_buttons();
     std::vector<Label*> labels = factory->create_all_labels();
     ToLevelListButton = big_buttons[0];
     WatchMorzeButton = big_buttons[1];

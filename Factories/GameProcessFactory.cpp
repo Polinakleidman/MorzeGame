@@ -1,17 +1,17 @@
 #pragma once
 #include "GameProcessFactory.h"
 
-std::vector<TransportButton*> GameProcessFactory::create_all_transport_buttons() {
-    TransportButton* ToLevelList = new TransportButton();
-    TransportButton* CheckButton = new TransportButton();
-    std::vector<TransportButton*> all_buttons;
+std::vector<Button*> GameProcessFactory::create_all_transport_buttons() {
+    Button* ToLevelList = new TransportButton();
+    Button* CheckButton = new TransportButton();
+    std::vector<Button*> all_buttons;
     all_buttons.push_back(ToLevelList);
     all_buttons.push_back(CheckButton);
     return all_buttons;
 }
 
-std::vector<LetterButton*> GameProcessFactory::create_all_letter_buttons(size_t number) {
-    std::vector<LetterButton*> all_buttons;
+std::vector<Button*> GameProcessFactory::create_all_letter_buttons(size_t number) {
+    std::vector<Button*> all_buttons;
     for(size_t i = 0; i < number; ++i){
         all_buttons.push_back(new LetterButton());
     }
@@ -25,7 +25,7 @@ std::vector<Label*> GameProcessFactory::create_all_labels() {
     return all_labels;
 }
 
-std::vector<ToLevelButton *> GameProcessFactory::create_all_tolevellist_buttons(size_t number) {
-    std::vector<ToLevelButton*> all_buttons;
+std::vector<Button *> GameProcessFactory::create_all_tolevellist_buttons(size_t number) {
+    std::vector<Button*> all_buttons;
     return all_buttons;
 }

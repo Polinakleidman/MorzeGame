@@ -7,7 +7,7 @@ void AllLevels::render(sf::Window& Window) {
 
 AllLevels::AllLevels(){
     factory = new LevelListFactory();
-    std::vector<TransportButton*> big_buttons = factory->create_all_transport_buttons();
+    std::vector<Button*> big_buttons = factory->create_all_transport_buttons();
     LevelButtons = factory->create_all_tolevellist_buttons(15);
     MenuButton = big_buttons[0];
     decorate_big_button(MenuButton, L"Вернуться\nк меню", 30, {0, 0, 139, 230}, sf::Color::Green, 480, 650,
